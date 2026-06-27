@@ -436,7 +436,6 @@ function buildProductCard(p) {
         <img src="${p.img}" alt="${p.name}" loading="lazy">
         ${badge}
         <button class="fav-btn" onclick="event.stopPropagation();toggleFav(${p.id})" title="Add to Wishlist">${heartSvg}</button>
-        <div class="product-shop-cta"><button class="product-shop-cta-btn" onclick="event.stopPropagation();openModal(${p.id})">Shop Now →</button></div>
       </div>
       <div class="product-info">
         <p class="product-cat-label">${p.catLabel}</p>
@@ -463,7 +462,6 @@ function buildFabricCard(p) {
       <div class="fabric-img-wrap" style="position:relative;">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
         <button class="fav-btn" onclick="event.stopPropagation();toggleFav(${p.id})" title="Add to Wishlist">${heartSvg}</button>
-        <div class="product-shop-cta"><button class="product-shop-cta-btn" onclick="event.stopPropagation();openModal(${p.id})">Shop Now →</button></div>
       </div>
       <div class="fabric-info">
         <h3 class="fabric-name">${p.name}</h3>
