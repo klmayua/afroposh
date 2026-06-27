@@ -40,22 +40,22 @@ import '../styles/global.css';
     <a href="/" class="nav-logo">Afroposh <span>Afriture</span></a>
     <div class="nav-ctas">
       <select id="currencySelect" onchange="setCurrency(this.value)"
-        style="font-family:'DM Mono',monospace;font-size:11px;border:1px solid rgba(255,255,255,0.25);border-radius:3px;padding:6px 10px;background:rgba(255,255,255,0.08);color:white;cursor:pointer;letter-spacing:0.05em;transition:all 0.3s;">
+        style="font-family:'DM Mono',monospace;font-size:11px;border:1.5px solid rgba(255,255,255,0.45);border-radius:3px;padding:6px 10px;background:rgba(255,255,255,0.08);color:white;cursor:pointer;letter-spacing:0.05em;transition:all 0.3s;">
         <option value="NGN">₦ NGN</option>
         <option value="USD">$ USD</option>
         <option value="GBP">£ GBP</option>
         <option value="FCFA">FCFA</option>
         <option value="GHS">GHS</option>
       </select>
-      <button onclick="toggleWishlistPanel()" title="Wishlist" style="position:relative;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;">
+      <button onclick="toggleWishlistPanel()" title="Wishlist" style="position:relative;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.45);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;">
         ♥
         <span id="wishCount" style="position:absolute;top:-2px;right:-2px;width:18px;height:18px;background:#C0392B;border-radius:50%;font-size:10px;font-weight:700;color:white;display:none;align-items:center;justify-content:center;font-family:'DM Mono',monospace;">0</span>
       </button>
-      <button onclick="toggleCart()" title="Cart" style="position:relative;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;">
+      <button onclick="toggleCart()" title="Cart" style="position:relative;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.45);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;">
         🛒
         <span id="cartCount" style="position:absolute;top:-2px;right:-2px;width:18px;height:18px;background:var(--gold);border-radius:50%;font-size:10px;font-weight:700;color:white;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;">0</span>
       </button>
-      <a href="/login" id="adminBtn" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border:1.5px solid rgba(255,255,255,0.35);border-radius:3px;color:rgba(255,255,255,0.8);transition:all 0.3s;text-decoration:none;">Login</a>
+      <a href="/login" id="adminBtn" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border:2px solid rgba(255,255,255,0.55);border-radius:3px;color:rgba(255,255,255,0.9);transition:all 0.3s;text-decoration:none;">Login</a>
     </div>
   </div>
 </nav>
@@ -559,7 +559,7 @@ import '../styles/global.css';
 // ── DATA ──────────────────────────────────────────────
 const RATES = { NGN: 1, USD: 1/1550, GBP: 1/1950, FCFA: 2.6, GHS: 1000/10300 };
 const SYMS  = { NGN: '₦', USD: '$', GBP: '£', FCFA: 'FCFA ', GHS: 'GHS ' };
-let currency = 'NGN';
+let currency = localStorage.getItem('afroposh_currency') || 'NGN';
 let cart = JSON.parse(localStorage.getItem('afroposh_cart') || '[]');
 let wishlist = JSON.parse(localStorage.getItem('afroposh_wish') || '[]');
 
@@ -601,8 +601,11 @@ function fmt(ngn, cur = currency) {
 
 function setCurrency(c) {
   currency = c;
-  // Update nav select style on scroll
+  localStorage.setItem('afroposh_currency', c);
   const sel = document.getElementById('currencySelect');
+  if (sel) sel.value = c;
+  const mobSel = document.getElementById('mobCurrencySelect');
+  if (mobSel) mobSel.value = c;
   renderFeaturedDresses();
   renderHomeFabrics();
   renderHomeAccessories();
@@ -717,7 +720,7 @@ function buildProductCard(p) {
         <div class="product-price-row">
           <div>
             <div class="product-price">${fmt(p.price)}</div>
-            ${currency !== 'USD' ? `<div class="product-price-alt">≈ $${Math.round(p.price/1550)}</div>` : ''}
+            ${currency !== 'USD' ? `<div class="product-price-alt">$${Math.round(p.price/1550)}</div>` : ''}
           </div>
           <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})">${cartSvg} <span>Add to Cart</span></button>
         </div>
@@ -743,7 +746,7 @@ function buildFabricCard(p) {
         <div class="fabric-price-row">
           <div>
             <div class="fabric-price">${fmt(p.price)}</div>
-            ${currency !== 'USD' ? `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted)">≈ $${Math.round(p.price/1550)}</div>` : ''}
+            ${currency !== 'USD' ? `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted)">$${Math.round(p.price/1550)}</div>` : ''}
           </div>
           <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})">${cartSvg} <span>Add to Cart</span></button>
         </div>
@@ -919,6 +922,15 @@ window.showToast = showToast;
 
 // ── INIT ──────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  // Restore saved currency and sync both selects
+  const savedCur = localStorage.getItem('afroposh_currency');
+  if (savedCur) {
+    currency = savedCur;
+    const sel = document.getElementById('currencySelect');
+    if (sel) sel.value = savedCur;
+    const mobSel = document.getElementById('mobCurrencySelect');
+    if (mobSel) mobSel.value = savedCur;
+  }
   renderFeaturedDresses();
   renderHomeFabrics();
   renderHomeAccessories();

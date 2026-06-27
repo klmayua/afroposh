@@ -72,14 +72,14 @@ import '../styles/global.css';
 <div class="shop-body sp" style="background:var(--surface);padding:0 32px 80px;">
   <div style="max-width:1400px;margin:0 auto;">
     <!-- FILTER BAR -->
-    <div class="filter-bar" style="position:sticky;top:110px;z-index:50;background:var(--surface);padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div class="filter-bar" style="position:sticky;top:108px;z-index:50;background:var(--surface);padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
       <div id="filterTabs" style="display:flex;gap:8px;flex-wrap:wrap;">
         <button class="filter-tab active" onclick="filterBy('all')">All</button>
         <button class="filter-tab" onclick="filterBy('bubus')">Bubu Dresses</button>
         <button class="filter-tab" onclick="filterBy('fabrics')">Fabrics</button>
         <button class="filter-tab" onclick="filterBy('accessories')">Accessories</button>
       </div>
-      <select id="sortSelect" onchange="sortProducts(this.value)" style="font-family:'DM Mono',monospace;font-size:11px;border:1.5px solid var(--border-strong);border-radius:3px;padding:8px 14px;background:white;color:var(--ink);cursor:pointer;">
+      <select id="sortSelect" onchange="sortProducts(this.value)" style="font-family:'DM Mono',monospace;font-size:11px;border:1.5px solid var(--border-strong);border-radius:999px;padding:8px 16px;background:white;color:var(--ink);cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%231A1A1A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px;">
         <option value="featured">Featured</option>
         <option value="price-asc">Price: Low → High</option>
         <option value="price-desc">Price: High → Low</option>
@@ -316,6 +316,9 @@ import '../styles/global.css';
   }
   .filter-tab:hover { border-color: var(--ink); color: var(--ink); }
   .filter-tab.active { background: var(--ink); border-color: var(--ink); color: white; }
+  @media (max-width: 768px) {
+    .filter-bar { top: 108px !important; padding: 16px 0 !important; }
+  }
   .fav-btn { position:absolute; top:10px; right:10px; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.85); border:none; font-size:16px; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; transition:all 0.2s; backdrop-filter:blur(4px); }
   .fav-btn:hover { background:white; transform:scale(1.1); }
   .fav-btn.active { color:#C0392B; }
@@ -443,7 +446,7 @@ function buildProductCard(p) {
         <div class="product-price-row">
           <div>
             <div class="product-price">${fmt(p.price)}</div>
-            ${currency !== 'USD' ? '<div class="product-price-alt">≈ $' + Math.round(p.price/1550) + '</div>' : ''}
+            ${currency !== 'USD' ? '<div class="product-price-alt">$' + Math.round(p.price/1550) + '</div>' : ''}
           </div>
           <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})" title="Add to Cart">${cartSvg}</button>
         </div>
@@ -469,7 +472,7 @@ function buildFabricCard(p) {
         <div class="fabric-price-row">
           <div>
             <div class="fabric-price">${fmt(p.price)}</div>
-            ${currency !== 'USD' ? '<div style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--ink-muted)">≈ $' + Math.round(p.price/1550) + '</div>' : ''}
+            ${currency !== 'USD' ? '<div style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--ink-muted)">$' + Math.round(p.price/1550) + '</div>' : ''}
           </div>
           <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})" title="Add to Cart">${cartSvg}</button>
         </div>
