@@ -17,9 +17,10 @@ import '../styles/global.css';
   <!-- ADMIN NAV -->
   <div class="admin-nav-bar">
     <a href="/" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:600;text-decoration:none;color:var(--ink);">Afroposh <span style="color:var(--gold);">Afriture</span></a>
-    <div style="display:flex;align-items:center;gap:16px;">
-      <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted);letter-spacing:0.1em;padding:4px 10px;border:1px solid var(--border);border-radius:3px;">AUTH VIA SUPABASE IN PRODUCTION</span>
-      <a href="/" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;">← Store</a>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span id="adminGreeting" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);letter-spacing:0.05em;"></span>
+      <a href="/shop" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;padding:7px 14px;border:1.5px solid var(--border);border-radius:999px;transition:all 0.2s;">Preview Store ↗</a>
+      <button onclick="adminLogout()" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#C0392B;background:none;border:1.5px solid rgba(192,57,43,0.35);border-radius:999px;padding:7px 14px;cursor:pointer;transition:all 0.2s;">Log Out</button>
     </div>
   </div>
 
@@ -28,15 +29,15 @@ import '../styles/global.css';
     <aside class="admin-sidebar">
       <div class="sidebar-section">
         <div class="sidebar-head">Store</div>
-        <button class="sidebar-link active" onclick="showTab('overview')">📊 Dashboard</button>
-        <button class="sidebar-link" onclick="showTab('orders')">📦 Orders <span class="sidebar-badge">3</span></button>
-        <button class="sidebar-link" onclick="showTab('add_product')">➕ Add Product</button>
-        <button class="sidebar-link" onclick="showTab('products')">👗 Products</button>
-        <button class="sidebar-link" onclick="showTab('pricing')">💰 Rates & Pricing</button>
+        <button class="sidebar-link active" id="sbl-overview" onclick="showTab('overview',this)">Dashboard</button>
+        <button class="sidebar-link" id="sbl-orders" onclick="showTab('orders',this)">Orders <span class="sidebar-badge">3</span></button>
+        <button class="sidebar-link" id="sbl-add_product" onclick="showTab('add_product',this)">Add Product</button>
+        <button class="sidebar-link" id="sbl-products" onclick="showTab('products',this)">Products</button>
+        <button class="sidebar-link" id="sbl-customers" onclick="showTab('customers',this)">Customers</button>
+        <button class="sidebar-link" id="sbl-pricing" onclick="showTab('pricing',this)">Rates & Pricing</button>
       </div>
       <div class="sidebar-section" style="margin-top:auto;padding-top:20px;border-top:1px solid var(--border);">
-        <a href="https://wa.me/2371184837" target="_blank" class="sidebar-link" style="color:var(--whatsapp);">💬 WhatsApp</a>
-        <a href="/shop" class="sidebar-link">🏪 View Store</a>
+        <a href="https://wa.me/2371184837" target="_blank" class="sidebar-link" style="color:var(--whatsapp);">WhatsApp Support</a>
       </div>
     </aside>
 
@@ -393,6 +394,29 @@ import '../styles/global.css';
         <button onclick="saveRates()" class="btn-primary" style="width:100%;justify-content:center;">Save Rates — Update All Prices</button>
       </div>
 
+      <!-- ═══════════ CUSTOMERS TAB ═══════════ -->
+      <div id="tab-customers" class="admin-tab" style="display:none;">
+        <h2 style="font-size:20px;font-weight:600;margin-bottom:24px;">Customers</h2>
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-head-title">Registered Accounts</span>
+            <span id="customerCount" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);"></span>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Country</th>
+                <th>Phone</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody id="customersTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
     </main>
   </div>
 </div>
@@ -427,12 +451,14 @@ const PRODUCTS = [
 ];
 
 // ── TAB SWITCHING ─────────────────────────────────────
-function showTab(id) {
+function showTab(id, btn) {
   document.querySelectorAll('.admin-tab').forEach(t => t.style.display = 'none');
-  document.getElementById('tab-' + id).style.display = 'block';
+  const tab = document.getElementById('tab-' + id);
+  if (tab) tab.style.display = 'block';
   document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-  event.target.classList.add('active');
+  if (btn) btn.classList.add('active');
   if (id === 'products') renderProductsTable();
+  if (id === 'customers') renderCustomersTable();
 }
 
 // ── PRODUCTS TABLE ────────────────────────────────────
@@ -491,13 +517,58 @@ document.getElementById('uploadZone').addEventListener('click', () => {
   document.getElementById('fileInput').click();
 });
 
-// ── AUTH GUARD ────────────────────────────────────────
+// ── CUSTOMERS TABLE ───────────────────────────────────
+function renderCustomersTable() {
+  const DEMO_CUSTOMERS = [
+    { firstName:'Amara', lastName:'Okafor', email:'customer@afroposh.com', country:'Nigeria', phone:'+234 801 234 5678', joined:'Demo Account' },
+  ];
+  const registered = JSON.parse(localStorage.getItem('afroposh_registered') || '[]');
+  const all = [...DEMO_CUSTOMERS, ...registered.map(u => ({
+    firstName: u.firstName,
+    lastName: u.lastName,
+    email: u.email,
+    country: u.country || '—',
+    phone: u.phone || '—',
+    joined: u.loggedInAt ? new Date(u.loggedInAt).toLocaleDateString() : 'Registered'
+  }))];
+  const tbody = document.getElementById('customersTableBody');
+  const countEl = document.getElementById('customerCount');
+  if (countEl) countEl.textContent = all.length + ' customer' + (all.length !== 1 ? 's' : '');
+  if (!tbody) return;
+  if (all.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--ink-muted);padding:32px;font-size:13px;">No registered customers yet</td></tr>';
+    return;
+  }
+  tbody.innerHTML = all.map(c => `
+    <tr>
+      <td style="font-size:13px;font-weight:500;">${c.firstName} ${c.lastName}</td>
+      <td style="font-family:'DM Mono',monospace;font-size:11px;">${c.email}</td>
+      <td style="font-size:12px;">${c.country}</td>
+      <td style="font-family:'DM Mono',monospace;font-size:11px;">${c.phone}</td>
+      <td style="font-size:11px;color:var(--ink-muted);">${c.joined}</td>
+    </tr>
+  `).join('');
+}
+
+// ── AUTH GUARD + INIT ─────────────────────────────────
 (function() {
   const user = JSON.parse(localStorage.getItem('afroposh_user') || 'null');
   if (!user || user.role !== 'admin') {
     window.location.href = '/login';
+    return;
   }
+  // Greet admin by name
+  document.addEventListener('DOMContentLoaded', () => {
+    const greeting = document.getElementById('adminGreeting');
+    if (greeting) greeting.textContent = user.firstName + ' ' + (user.lastName || '');
+  });
 })();
+
+// ── LOGOUT ────────────────────────────────────────────
+function adminLogout() {
+  localStorage.removeItem('afroposh_user');
+  window.location.href = '/login';
+}
 
 // ── TOAST ─────────────────────────────────────────────
 function showToast(msg) {
@@ -506,6 +577,14 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 3000);
 }
+
+// ── Expose all onclick handlers to window ────────────
+window.showTab = showTab;
+window.markShipped = markShipped;
+window.publishProduct = publishProduct;
+window.calcUSD = calcUSD;
+window.saveRates = saveRates;
+window.adminLogout = adminLogout;
 </script>
 
 </body>
