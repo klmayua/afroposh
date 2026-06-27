@@ -324,6 +324,15 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
+// ── Expose handlers to global scope (Astro bundles scripts as modules) ──
+window.fillDemo      = fillDemo;
+window.setRole       = setRole;
+window.handleLogin   = handleLogin;
+window.handleRegister = handleRegister;
+window.showRegister  = showRegister;
+window.showLogin     = showLogin;
+window.showToast     = showToast;
+
 // Redirect if already logged in
 document.addEventListener('DOMContentLoaded', () => {
   const user = JSON.parse(localStorage.getItem('afroposh_user') || 'null');
