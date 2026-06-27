@@ -144,8 +144,8 @@ body {
   display: block;
 }
 .hero-title .outline-text {
-  -webkit-text-stroke: 1px rgba(255,255,255,0.35);
-  color: transparent;
+  -webkit-text-stroke: none;
+  color: white;
   display: block;
 }
 
@@ -457,6 +457,16 @@ body {
 }
 .main-nav.transparent .nav-links a { color: rgba(255,255,255,0.75); }
 .main-nav.scrolled .nav-links a { color: var(--ink-soft); }
+.main-nav.scrolled .nav-ctas button,
+.main-nav.scrolled .nav-ctas select {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--ink) !important;
+}
+.main-nav.scrolled .nav-ctas a {
+  border-color: var(--ink) !important;
+  color: var(--ink) !important;
+}
 .nav-links a::after {
   content: '';
   position: absolute;
