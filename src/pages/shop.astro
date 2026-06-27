@@ -60,7 +60,7 @@ import '../styles/global.css';
 </nav>
 
 <!-- SHOP HEADER -->
-<div class="shop-header" style="background:white;padding:140px 32px 48px;text-align:center;">
+<div class="shop-header sp" style="background:white;padding:140px 32px 48px;text-align:center;">
   <p class="section-eyebrow" style="justify-content:center;">Our Collection</p>
   <h1 class="section-title">Shop <em>All Products</em></h1>
   <p class="section-sub" style="margin:14px auto 0;">Premium Ankara Bubu dresses, batik fabrics, and artisan accessories.</p>
@@ -68,7 +68,7 @@ import '../styles/global.css';
 </div>
 
 <!-- SHOP BODY -->
-<div class="shop-body" style="background:var(--surface);padding:0 32px 80px;">
+<div class="shop-body sp" style="background:var(--surface);padding:0 32px 80px;">
   <div style="max-width:1400px;margin:0 auto;">
     <!-- FILTER BAR -->
     <div class="filter-bar" style="position:sticky;top:110px;z-index:50;background:var(--surface);padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
@@ -427,6 +427,7 @@ function buildProductCard(p) {
         <img src="${p.img}" alt="${p.name}" loading="lazy">
         ${badge}
         <button class="fav-btn" onclick="event.stopPropagation();toggleFav(${p.id})" title="Add to Wishlist">${heartSvg}</button>
+        <div class="product-shop-cta"><button class="product-shop-cta-btn" onclick="event.stopPropagation();openModal(${p.id})">Shop Now →</button></div>
       </div>
       <div class="product-info">
         <p class="product-cat-label">${p.catLabel}</p>
@@ -453,6 +454,7 @@ function buildFabricCard(p) {
       <div class="fabric-img-wrap" style="position:relative;">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
         <button class="fav-btn" onclick="event.stopPropagation();toggleFav(${p.id})" title="Add to Wishlist">${heartSvg}</button>
+        <div class="product-shop-cta"><button class="product-shop-cta-btn" onclick="event.stopPropagation();openModal(${p.id})">Shop Now →</button></div>
       </div>
       <div class="fabric-info">
         <h3 class="fabric-name">${p.name}</h3>

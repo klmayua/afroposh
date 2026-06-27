@@ -301,7 +301,7 @@ import '../styles/global.css';
 </div>
 
 <!-- CATEGORIES -->
-<section style="max-width:1400px;margin:0 auto;padding:80px 32px;">
+<section class="sp" style="max-width:1400px;margin:0 auto;padding:80px 32px;">
   <div style="margin-bottom:48px;">
     <p class="section-eyebrow">Shop by Collection</p>
     <h2 class="section-title">Find Your <em>Perfect Piece</em></h2>
@@ -343,7 +343,7 @@ import '../styles/global.css';
 </div>
 
 <!-- FEATURED DRESSES -->
-<section style="background:var(--surface);padding:0 32px 80px;">
+<section class="sp" style="background:var(--surface);padding:0 32px 80px;">
   <div style="max-width:1400px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:16px;">
       <div>
@@ -362,7 +362,7 @@ import '../styles/global.css';
 </div>
 
 <!-- FABRIC SECTION -->
-<section style="max-width:1400px;margin:0 auto;padding:40px 32px 80px;">
+<section class="sp" style="max-width:1400px;margin:0 auto;padding:40px 32px 80px;">
   <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:16px;">
     <div>
       <p class="section-eyebrow">Premium Fabrics</p>
@@ -380,7 +380,7 @@ import '../styles/global.css';
 </div>
 
 <!-- ACCESSORIES STRIP -->
-<section style="background:var(--surface);padding:0 32px 80px;">
+<section class="sp" style="background:var(--surface);padding:0 32px 80px;">
   <div style="max-width:1400px;margin:0 auto;">
     <div style="margin-bottom:48px;">
       <p class="section-eyebrow">Artisan Accessories</p>
@@ -397,7 +397,7 @@ import '../styles/global.css';
 </div>
 
 <!-- WHOLESALE BANNER -->
-<section style="background:var(--ink);padding:56px 32px 96px;text-align:center;">
+<section class="sp" style="background:var(--ink);padding:56px 32px 96px;text-align:center;">
   <div style="max-width:720px;margin:0 auto;">
     <p class="section-eyebrow" style="color:var(--gold-light);justify-content:center;">Trade Partners</p>
     <h2 class="section-title" style="color:white;margin-bottom:16px;">Wholesale <em>Programme</em></h2>
@@ -695,6 +695,7 @@ function buildProductCard(p) {
         <img src="${p.img}" alt="${p.name}" loading="lazy">
         ${badge}
         <button class="fav-btn" onclick="event.stopPropagation();toggleFav(${p.id})">${heartSvg}</button>
+        <div class="product-shop-cta"><button class="product-shop-cta-btn" onclick="event.stopPropagation();openModal(${p.id})">Shop Now →</button></div>
       </div>
       <div class="product-info">
         <p class="product-cat-label">${p.catLabel}</p>
@@ -721,6 +722,7 @@ function buildFabricCard(p) {
       <div class="fabric-img-wrap" style="position:relative;">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
         <button class="fav-btn" onclick="event.stopPropagation();toggleFav(${p.id})">${heartSvg}</button>
+        <div class="product-shop-cta"><button class="product-shop-cta-btn" onclick="event.stopPropagation();openModal(${p.id})">Shop Now →</button></div>
       </div>
       <div class="fabric-info">
         <h3 class="fabric-name">${p.name}</h3>

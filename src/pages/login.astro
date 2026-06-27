@@ -213,8 +213,17 @@ function fillDemo(type) {
     document.getElementById('loginPassword').value = 'admin2026';
     setRole('admin');
   }
-  // Auto-submit after fill
-  setTimeout(() => document.getElementById('loginForm').requestSubmit(), 300);
+  // Pulse the Sign In button so user knows to click it
+  const btn = document.querySelector('#loginForm button[type="submit"]');
+  if (btn) {
+    btn.style.background = 'var(--gold)';
+    btn.style.transform = 'scale(1.02)';
+    btn.style.boxShadow = '0 8px 24px rgba(201,146,42,0.45)';
+    setTimeout(() => {
+      btn.style.transform = '';
+      btn.style.boxShadow = '';
+    }, 600);
+  }
 }
 
 function handleLogin(e) {
@@ -336,6 +345,8 @@ document.addEventListener('DOMContentLoaded', () => {
   @media (max-width: 768px) {
     main { grid-template-columns: 1fr !important; }
     #loginHeroPanel { display: none !important; }
+    /* Ensure bottom of form clears the mobile bottom nav */
+    main { padding-bottom: calc(40px + 72px) !important; }
   }
 </style>
 

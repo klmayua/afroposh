@@ -19,6 +19,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+button, a { touch-action: manipulation; }
 body {
   font-family: 'DM Sans', -apple-system, sans-serif;
   color: var(--ink);
@@ -1488,11 +1489,17 @@ footer {
   .footer-grid { grid-template-columns: 1fr; }
   .admin-sidebar { display: none; }
   .price-tier-grid { grid-template-columns: 1fr; }
-  .hero-title { font-size: clamp(36px, 10vw, 60px); }
-  .hero-content { padding: 0 20px; justify-content: flex-end; padding-bottom: 60px; }
-  .hero-sub { font-size: 13px; margin-bottom: 20px; }
-  .hero-cities { margin-bottom: 24px; }
-  .hero-eyebrow { font-size: 9px; margin-bottom: 16px; }
+  .hero-title { font-size: clamp(36px, 10vw, 60px); margin-bottom: 12px; }
+  /* Push content UP enough to clear bottom nav (72px) + breathing room (24px) */
+  .hero-content { padding: 0 20px calc(72px + 28px); justify-content: flex-end; }
+  .hero-section { height: calc(100vh - 36px); min-height: 580px; }
+  .hero-ctas { gap: 10px; flex-wrap: wrap; }
+  .hero-ctas .btn-primary, .hero-ctas .btn-outline-white { font-size: 11px; padding: 12px 20px; }
+  .cat-arrow { opacity: 1 !important; transform: translateY(0) !important; }
+  /* Tighten vertical rhythm so the stack fits the visible viewport */
+  .hero-sub { font-size: 12px; margin-bottom: 10px; max-width: 100%; }
+  .hero-cities { margin-bottom: 12px; }
+  .hero-eyebrow { font-size: 9px; margin-bottom: 10px; }
   .hero-preview-cards { display: none; }
   .trust-inner { grid-template-columns: 1fr 1fr; padding: 16px; gap: 12px; }
   .trust-item { gap: 8px; }
@@ -1507,6 +1514,20 @@ footer {
   .main-nav { position: fixed; }
   .main-nav.transparent { background: transparent; }
   .nav-logo { font-size: 20px; white-space: nowrap; }
+  /* Toast above bottom nav */
+  .toast { bottom: calc(28px + 72px); }
+  /* Modal above bottom nav */
+  .modal-wrap { z-index: 400; }
+  /* Touch targets — minimum 44px */
+  .fav-btn { min-width: 44px; min-height: 44px; }
+  .add-cart-btn { min-height: 44px; }
+  /* (Shop Now overlay is always-on by default — see hover media query below) */
+  /* Hide tiny 12-dot cluster */
+  .hero-counter { display: none; }
+  /* Hide scroll cue — overlaps bottom content on mobile */
+  .hero-scroll-cue { display: none; }
+  /* Section horizontal padding — narrows gutter on small screens */
+  .sp { padding-left: 16px !important; padding-right: 16px !important; }
 }
 
 /* ── FORM CONTROLS (Login/Register) ─────────────────── */
@@ -1666,6 +1687,51 @@ footer {
   .cookie-banner { flex-direction: column; gap: 14px; padding: 20px 20px calc(20px + 72px); text-align: center; }
   .cookie-banner p { font-size: 12px; }
 }
+
+/* ── SHOP NOW THUMBNAIL OVERLAY ──────────────────────── */
+/* Always visible by default (touch/mobile devices get it for free) */
+.product-shop-cta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 10px 12px 14px;
+  opacity: 1;
+  pointer-events: auto;
+}
+/* On hover-capable devices (desktops/laptops), hide until card is hovered */
+@media (hover: hover) {
+  .product-shop-cta {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .product-card:hover .product-shop-cta,
+  .fabric-card:hover .product-shop-cta {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+.product-shop-cta-btn {
+  width: 100%;
+  padding: 9px 0;
+  background: var(--gold);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.product-shop-cta-btn:hover { background: var(--gold-light); }
 
 /* ── MOBILE MORE MENU POLISH ─────────────────────── */
 .mobile-more-overlay {
