@@ -13,10 +13,18 @@ import '../styles/global.css';
 </head>
 <body>
 
-<!-- ANNOUNCE BAR -->
-<div class="announce-bar">
-  🌍 Pan-African delivery · Lagos · Accra · Yaoundé · Worldwide &nbsp;|&nbsp;
-  <span>Premium Batik Fabrics now in stock — Wholesale available</span>
+<!-- PREMIUM TICKER -->
+<div class="premium-ticker" id="premiumTicker">
+  <div class="ticker-track">
+    <span class="ticker-item ticker-gold">✦ Premium Batik Fabrics Now In Stock</span>
+    <span class="ticker-item ticker-green">🚚 Free Delivery on Orders Over ₦100,000</span>
+    <span class="ticker-item ticker-blue">📦 Wholesale Available — Minimum 6 Yards</span>
+    <span class="ticker-item ticker-purple">🔥 New Bubu Dress Collection Just Dropped</span>
+    <span class="ticker-item ticker-gold">✦ Premium Batik Fabrics Now In Stock</span>
+    <span class="ticker-item ticker-green">🚚 Free Delivery on Orders Over ₦100,000</span>
+    <span class="ticker-item ticker-blue">📦 Wholesale Available — Minimum 6 Yards</span>
+    <span class="ticker-item ticker-purple">🔥 New Bubu Dress Collection Just Dropped</span>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -61,21 +69,42 @@ import '../styles/global.css';
 ============================================ -->
 <section class="hero-section" id="hero">
 
-  <!-- SLIDES — hero images -->
+  <!-- SLIDES — Bubu→Ankara→Accessory cycle ×4 -->
   <div class="hero-slide active" id="slide-0">
-    <img src="/images/hero/hero1.jpg" alt="Tribal Geometric Maxi Bubu" loading="eager">
+    <img src="/images/dresses/afroposh_bubu7.jpg" alt="Green Kente Short Bubu" loading="eager">
   </div>
   <div class="hero-slide" id="slide-1">
-    <img src="/images/hero/hero2.jpg" alt="Galaxy Night Batik Fabric" loading="lazy">
+    <img src="/images/fabrics/afroposh_ankara1.jpg" alt="Ocean Wave Batik Fabric" loading="lazy">
   </div>
   <div class="hero-slide" id="slide-2">
-    <img src="/images/hero/hero3.jpg" alt="Mandala Fire Batik Fabric" loading="lazy">
+    <img src="/images/accessories/afroposh_combo_set.jpg" alt="Beaded Jewellery Set + Clutch" loading="lazy">
   </div>
   <div class="hero-slide" id="slide-3">
-    <img src="/images/hero/hero4.jpg" alt="Harvest Splatter Batik Fabric" loading="lazy">
+    <img src="/images/dresses/afroposh_bubu12.jpg" alt="Burgundy Navy Stripe Bubu" loading="lazy">
   </div>
   <div class="hero-slide" id="slide-4">
-    <img src="/images/hero/hero5.jpg" alt="Adinkra Symbol Batik Fabric" loading="lazy">
+    <img src="/images/fabrics/afroposh_ankara3.jpg" alt="Spiral Adinkra Batik Fabric" loading="lazy">
+  </div>
+  <div class="hero-slide" id="slide-5">
+    <img src="/images/accessories/afroposh_hat_and_bag.jpg" alt="Ankara Tote Bags & Hat" loading="lazy">
+  </div>
+  <div class="hero-slide" id="slide-6">
+    <img src="/images/dresses/afroposh_bubu4.jpg" alt="Olive Gold Stripe Maxi" loading="lazy">
+  </div>
+  <div class="hero-slide" id="slide-7">
+    <img src="/images/fabrics/afroposh_ankara6.jpg" alt="Harvest Splatter Batik" loading="lazy">
+  </div>
+  <div class="hero-slide" id="slide-8">
+    <img src="/images/accessories/afroposh_necklace.jpg" alt="Zulu Beaded Collar Necklace" loading="lazy">
+  </div>
+  <div class="hero-slide" id="slide-9">
+    <img src="/images/dresses/afroposh_bubu01.jpg" alt="Tribal Geometric Maxi Bubu" loading="lazy">
+  </div>
+  <div class="hero-slide" id="slide-10">
+    <img src="/images/fabrics/afroposh_ankara.jpg" alt="Galaxy Night Batik" loading="lazy">
+  </div>
+  <div class="hero-slide" id="slide-11">
+    <img src="/images/accessories/afroposh_wristwatch.jpg" alt="Beaded Watch Cuff" loading="lazy">
   </div>
 
   <!-- Gradient + texture overlays -->
@@ -137,6 +166,13 @@ import '../styles/global.css';
     <div class="hero-dot" onclick="goSlide(2)"></div>
     <div class="hero-dot" onclick="goSlide(3)"></div>
     <div class="hero-dot" onclick="goSlide(4)"></div>
+    <div class="hero-dot" onclick="goSlide(5)"></div>
+    <div class="hero-dot" onclick="goSlide(6)"></div>
+    <div class="hero-dot" onclick="goSlide(7)"></div>
+    <div class="hero-dot" onclick="goSlide(8)"></div>
+    <div class="hero-dot" onclick="goSlide(9)"></div>
+    <div class="hero-dot" onclick="goSlide(10)"></div>
+    <div class="hero-dot" onclick="goSlide(11)"></div>
   </div>
 
   <!-- Scroll cue -->
@@ -224,8 +260,13 @@ import '../styles/global.css';
   </div>
 </section>
 
+<!-- WAVE DIVIDER: white → surface -->
+<div class="wave-divider" style="background:var(--surface);">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px;"><path d="M0,0 C360,80 1080,0 1440,60 L1440,0 L0,0 Z" fill="white"/></svg>
+</div>
+
 <!-- FEATURED DRESSES -->
-<section style="background:var(--surface);padding:80px 32px;">
+<section style="background:var(--surface);padding:0 32px 80px;">
   <div style="max-width:1400px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:16px;">
       <div>
@@ -238,8 +279,13 @@ import '../styles/global.css';
   </div>
 </section>
 
+<!-- WAVE DIVIDER: surface → white -->
+<div class="wave-divider" style="background:white;">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px;"><path d="M0,0 C480,80 960,0 1440,50 L1440,0 L0,0 Z" fill="var(--surface)"/></svg>
+</div>
+
 <!-- FABRIC SECTION -->
-<section style="max-width:1400px;margin:0 auto;padding:80px 32px;">
+<section style="max-width:1400px;margin:0 auto;padding:40px 32px 80px;">
   <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:16px;">
     <div>
       <p class="section-eyebrow">Premium Fabrics</p>
@@ -251,8 +297,13 @@ import '../styles/global.css';
   <div class="fabric-grid" id="home-fabrics"></div>
 </section>
 
+<!-- WAVE DIVIDER: white → surface -->
+<div class="wave-divider" style="background:var(--surface);">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px;"><path d="M0,0 C320,70 1120,10 1440,60 L1440,0 L0,0 Z" fill="white"/></svg>
+</div>
+
 <!-- ACCESSORIES STRIP -->
-<section style="background:var(--surface);padding:80px 32px;">
+<section style="background:var(--surface);padding:0 32px 80px;">
   <div style="max-width:1400px;margin:0 auto;">
     <div style="margin-bottom:48px;">
       <p class="section-eyebrow">Artisan Accessories</p>
@@ -263,8 +314,13 @@ import '../styles/global.css';
   </div>
 </section>
 
+<!-- WAVE DIVIDER: surface → ink -->
+<div class="wave-divider" style="background:var(--ink);">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px;"><path d="M0,0 C400,80 1040,10 1440,55 L1440,0 L0,0 Z" fill="var(--surface)"/></svg>
+</div>
+
 <!-- WHOLESALE BANNER -->
-<section style="background:var(--ink);padding:96px 32px;text-align:center;">
+<section style="background:var(--ink);padding:56px 32px 96px;text-align:center;">
   <div style="max-width:720px;margin:0 auto;">
     <p class="section-eyebrow" style="color:var(--gold-light);justify-content:center;">Trade Partners</p>
     <h2 class="section-title" style="color:white;margin-bottom:16px;">Wholesale <em>Programme</em></h2>
@@ -477,7 +533,7 @@ function updatePreviewPrices() {
 
 // ── HERO SLIDESHOW ────────────────────────────────────
 let slideIndex = 0;
-const SLIDE_COUNT = 5;
+const SLIDE_COUNT = 12;
 let slideInterval;
 
 function goSlide(n) {
@@ -552,12 +608,16 @@ function buildProductCard(p) {
   const badge = p.badge === 'new' ? '<span class="product-badge badge-new">New</span>'
               : p.badge === 'wholesale' ? '<span class="product-badge badge-wholesale">Wholesale</span>' : '';
   const isFav = wishlist.includes(p.id);
+  const heartSvg = isFav
+    ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="#C0392B" stroke="#C0392B" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'
+    : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+  const cartSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
   return `
     <div class="product-card" onclick="openModal(${p.id})">
       <div class="product-img-wrap">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
         ${badge}
-        <button style="position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.85);border:none;font-size:16px;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);" onclick="event.stopPropagation();toggleFav(${p.id})">${isFav ? '❤️' : '🤍'}</button>
+        <button class="fav-btn" onclick="event.stopPropagation();toggleFav(${p.id})">${heartSvg}</button>
       </div>
       <div class="product-info">
         <p class="product-cat-label">${p.catLabel}</p>
@@ -567,7 +627,7 @@ function buildProductCard(p) {
             <div class="product-price">${fmt(p.price)}</div>
             ${currency !== 'USD' ? `<div class="product-price-alt">≈ $${Math.round(p.price/1550)}</div>` : ''}
           </div>
-          <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})">+</button>
+          <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})">${cartSvg}</button>
         </div>
       </div>
     </div>`;
@@ -575,11 +635,15 @@ function buildProductCard(p) {
 
 function buildFabricCard(p) {
   const isFav = wishlist.includes(p.id);
+  const heartSvg = isFav
+    ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="#C0392B" stroke="#C0392B" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'
+    : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+  const cartSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
   return `
     <div class="fabric-card" onclick="openModal(${p.id})">
       <div class="fabric-img-wrap" style="position:relative;">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
-        <button style="position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.85);border:none;font-size:16px;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);" onclick="event.stopPropagation();toggleFav(${p.id})">${isFav ? '❤️' : '🤍'}</button>
+        <button class="fav-btn" onclick="event.stopPropagation();toggleFav(${p.id})">${heartSvg}</button>
       </div>
       <div class="fabric-info">
         <h3 class="fabric-name">${p.name}</h3>
@@ -589,7 +653,7 @@ function buildFabricCard(p) {
             <div class="fabric-price">${fmt(p.price)}</div>
             ${currency !== 'USD' ? `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted)">≈ $${Math.round(p.price/1550)}</div>` : ''}
           </div>
-          <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})" style="font-size:16px;">+</button>
+          <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})">${cartSvg}</button>
         </div>
       </div>
     </div>`;

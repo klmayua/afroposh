@@ -459,24 +459,75 @@ body {
 }
 .nav-links a:hover::after { transform: scaleX(1); }
 
-/* ── ANNOUNCE BAR ────────────────────────────── */
-.announce-bar {
+/* ── PREMIUM TICKER ─────────────────────────── */
+.premium-ticker {
   background: var(--ink);
-  color: white;
-  text-align: center;
-  padding: 10px 24px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 101;
+  overflow: hidden;
+  height: 36px;
+  display: flex;
+  align-items: center;
 }
-.announce-bar span { color: var(--gold-light); }
-.main-nav { top: 38px; }
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker-scroll 30s linear infinite;
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 48px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ticker-gold { color: var(--gold-light); }
+.ticker-green { color: #4ade80; }
+.ticker-blue { color: #60a5fa; }
+.ticker-purple { color: #c084fc; }
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.main-nav { top: 36px; }
+
+/* ── WAVE DIVIDER ──────────────────────────── */
+.wave-divider {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+/* ── FAVORITE BUTTON ────────────────────────── */
+.fav-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.fav-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
 /* ── TRUST BAR ───────────────────────────────── */
 .trust-bar {
