@@ -79,6 +79,7 @@ import '../styles/global.css';
     <button class="mob-nav-item" onclick="toggleWishlistPanel()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       <span>Wishlist</span>
+      <span class="mob-nav-badge" id="mobWishCount" style="display:none;">0</span>
     </button>
     <button class="mob-nav-item" id="mobMoreBtn" onclick="toggleMobileMore()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
@@ -676,6 +677,10 @@ function updateWishCount() {
   const el = document.getElementById('wishCount');
   if (wishlist.length > 0) { el.style.display = 'flex'; el.textContent = wishlist.length; }
   else { el.style.display = 'none'; }
+  const mobEl = document.getElementById('mobWishCount');
+  if (mobEl) { mobEl.textContent = wishlist.length; mobEl.style.display = wishlist.length > 0 ? 'flex' : 'none'; }
+  const wishBtn = document.querySelector('.mob-nav-item[onclick="toggleWishlistPanel()"] svg');
+  if (wishBtn) { wishBtn.setAttribute('fill', wishlist.length > 0 ? 'var(--gold)' : 'none'); wishBtn.setAttribute('stroke', wishlist.length > 0 ? 'var(--gold)' : 'currentColor'); }
 }
 function toggleWishlistPanel() { showToast('Wishlist: ' + wishlist.length + ' items saved'); }
 
@@ -850,6 +855,8 @@ function updateCartDisplay() {
   document.getElementById('cartCount').textContent = count;
   const mobCount = document.getElementById('mobCartCount');
   if (mobCount) { mobCount.textContent = count; mobCount.style.display = count > 0 ? 'flex' : 'none'; }
+  const cartBtn = document.querySelector('#mobileBottomNav .mob-nav-item[onclick="toggleCart()"] svg');
+  if (cartBtn) { cartBtn.setAttribute('fill', count > 0 ? 'var(--gold)' : 'none'); cartBtn.setAttribute('stroke', count > 0 ? 'var(--gold)' : 'currentColor'); }
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
   document.getElementById('cartTotal').textContent = fmt(total);
 
