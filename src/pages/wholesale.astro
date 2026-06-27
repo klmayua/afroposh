@@ -29,7 +29,7 @@ import '../styles/global.css';
       <li><a href="/shop?cat=accessories">Accessories</a></li>
       <li><a href="/wholesale">Wholesale</a></li>
     </ul>
-    <div style="display:flex;align-items:center;gap:16px;">
+    <div style="display:flex;align-items:center;gap:12px;">
       <select id="currencySelect" onchange="setCurrency(this.value)"
         style="font-family:'DM Mono',monospace;font-size:11px;border:1px solid var(--border-strong);border-radius:3px;padding:6px 10px;background:white;color:var(--ink);cursor:pointer;letter-spacing:0.05em;">
         <option value="NGN">₦ NGN</option>
@@ -38,11 +38,11 @@ import '../styles/global.css';
         <option value="FCFA">FCFA</option>
         <option value="GHS">GHS</option>
       </select>
-      <button onclick="toggleCart()" style="position:relative;width:40px;height:40px;border-radius:50%;background:var(--surface);border:1px solid var(--border-strong);color:var(--ink);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <button onclick="toggleCart()" title="Cart" style="position:relative;width:40px;height:40px;border-radius:50%;background:var(--surface);border:1px solid var(--border-strong);color:var(--ink);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
         🛒
         <span id="cartCount" data-cart-count style="position:absolute;top:-2px;right:-2px;width:18px;height:18px;background:var(--gold);border-radius:50%;font-size:10px;font-weight:700;color:white;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;">0</span>
       </button>
-      <a href="/admin" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border:1.5px solid var(--ink);border-radius:3px;color:var(--ink);transition:all 0.3s;text-decoration:none;">Dashboard</a>
+      <a href="/login" id="navAuthBtn" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border:1.5px solid var(--ink);border-radius:3px;color:var(--ink);transition:all 0.3s;text-decoration:none;">Login</a>
     </div>
   </div>
 </nav>
@@ -307,7 +307,16 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-document.addEventListener('DOMContentLoaded', () => { updateCartDisplay(); });
+function checkAuth() {
+  const user = JSON.parse(localStorage.getItem('afroposh_user') || 'null');
+  const btn = document.getElementById('navAuthBtn');
+  if (user && btn) {
+    btn.textContent = user.role === 'admin' ? '📊 Dashboard' : '👤 ' + user.firstName;
+    btn.href = user.role === 'admin' ? '/admin' : '#';
+    if (user.role !== 'admin') btn.onclick = function(e) { e.preventDefault(); if(confirm('Log out?')) { localStorage.removeItem('afroposh_user'); location.reload(); } };
+  }
+}
+document.addEventListener('DOMContentLoaded', () => { updateCartDisplay(); checkAuth(); });
 </script>
 
 </body>

@@ -29,7 +29,7 @@ import '../styles/global.css';
       <li><a href="/shop?cat=accessories">Accessories</a></li>
       <li><a href="/wholesale">Wholesale</a></li>
     </ul>
-    <div style="display:flex;align-items:center;gap:16px;">
+    <div style="display:flex;align-items:center;gap:12px;">
       <select id="currencySelect" onchange="setCurrency(this.value)"
         style="font-family:'DM Mono',monospace;font-size:11px;border:1px solid rgba(255,255,255,0.25);border-radius:3px;padding:6px 10px;background:rgba(255,255,255,0.08);color:white;cursor:pointer;letter-spacing:0.05em;transition:all 0.3s;">
         <option value="NGN">₦ NGN</option>
@@ -38,11 +38,15 @@ import '../styles/global.css';
         <option value="FCFA">FCFA</option>
         <option value="GHS">GHS</option>
       </select>
-      <button onclick="toggleCart()" style="position:relative;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;">
+      <button onclick="toggleWishlistPanel()" title="Wishlist" style="position:relative;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;">
+        ♥
+        <span id="wishCount" style="position:absolute;top:-2px;right:-2px;width:18px;height:18px;background:#C0392B;border-radius:50%;font-size:10px;font-weight:700;color:white;display:none;align-items:center;justify-content:center;font-family:'DM Mono',monospace;">0</span>
+      </button>
+      <button onclick="toggleCart()" title="Cart" style="position:relative;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;">
         🛒
         <span id="cartCount" style="position:absolute;top:-2px;right:-2px;width:18px;height:18px;background:var(--gold);border-radius:50%;font-size:10px;font-weight:700;color:white;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;">0</span>
       </button>
-      <a href="/admin" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border:1.5px solid rgba(255,255,255,0.35);border-radius:3px;color:rgba(255,255,255,0.8);transition:all 0.3s;text-decoration:none;" id="adminBtn">Dashboard</a>
+      <a href="/login" id="adminBtn" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border:1.5px solid rgba(255,255,255,0.35);border-radius:3px;color:rgba(255,255,255,0.8);transition:all 0.3s;text-decoration:none;">Login</a>
     </div>
   </div>
 </nav>
@@ -57,21 +61,21 @@ import '../styles/global.css';
 ============================================ -->
 <section class="hero-section" id="hero">
 
-  <!-- SLIDES — real product images -->
+  <!-- SLIDES — hero images -->
   <div class="hero-slide active" id="slide-0">
-    <img src="/images/dresses/tribal-geometric-maxi.jpg" alt="Tribal Geometric Maxi" loading="eager">
+    <img src="/images/hero/hero1.jpg" alt="Tribal Geometric Maxi Bubu" loading="eager">
   </div>
   <div class="hero-slide" id="slide-1">
-    <img src="/images/dresses/red-teal-fringe-maxi.jpg" alt="Red Teal Fringe Maxi" loading="lazy">
+    <img src="/images/hero/hero2.jpg" alt="Galaxy Night Batik Fabric" loading="lazy">
   </div>
   <div class="hero-slide" id="slide-2">
-    <img src="/images/dresses/royal-blue-mustard-grid.jpg" alt="Royal Blue Mustard" loading="lazy">
+    <img src="/images/hero/hero3.jpg" alt="Mandala Fire Batik Fabric" loading="lazy">
   </div>
   <div class="hero-slide" id="slide-3">
-    <img src="/images/dresses/forest-green-short-bubu.jpg" alt="Forest Green Bubu" loading="lazy">
+    <img src="/images/hero/hero4.jpg" alt="Harvest Splatter Batik Fabric" loading="lazy">
   </div>
   <div class="hero-slide" id="slide-4">
-    <img src="/images/accessories/beaded-jewellery-set.jpg" alt="Beaded Jewellery Set" loading="lazy">
+    <img src="/images/hero/hero5.jpg" alt="Adinkra Symbol Batik Fabric" loading="lazy">
   </div>
 
   <!-- Gradient + texture overlays -->
@@ -103,22 +107,22 @@ import '../styles/global.css';
 
   <!-- Floating product preview cards (right side) -->
   <div class="hero-preview-cards" id="heroPreviewCards">
-    <div class="hero-preview-card" onclick="openModal(1)">
-      <img src="/images/dresses/tribal-geometric-maxi.jpg" alt="">
+    <div class="hero-preview-card" onclick="openModal(2)">
+      <img src="/images/dresses/afroposh_bubu01.jpg" alt="">
       <div class="hero-preview-card-label">
         Tribal Maxi<br>
         <span class="hero-preview-price" id="prev-price-1">₦35,000</span>
       </div>
     </div>
-    <div class="hero-preview-card" onclick="openModal(18)">
-      <img src="/images/accessories/zulu-collar-necklace.jpg" alt="">
+    <div class="hero-preview-card" onclick="openModal(23)">
+      <img src="/images/accessories/afroposh_necklace.jpg" alt="">
       <div class="hero-preview-card-label">
         Zulu Collar<br>
         <span class="hero-preview-price" id="prev-price-2">₦28,000</span>
       </div>
     </div>
-    <div class="hero-preview-card" onclick="openModal(11)">
-      <img src="/images/fabrics/spiral-adinkra-batik.jpg" alt="">
+    <div class="hero-preview-card" onclick="openModal(16)">
+      <img src="/images/fabrics/afroposh_ankara3.jpg" alt="">
       <div class="hero-preview-card-label">
         Spiral Adinkra<br>
         <span class="hero-preview-price" id="prev-price-3">₦25,000</span>
@@ -191,25 +195,25 @@ import '../styles/global.css';
   </div>
   <div class="cat-grid">
     <a href="/shop?cat=bubus" class="cat-card">
-      <img src="/images/dresses/red-teal-fringe-maxi.jpg" alt="Bubu Dresses">
+      <img src="/images/dresses/afroposh_bubu2.jpg" alt="Bubu Dresses">
       <div class="cat-overlay">
         <span class="cat-label">Ready to Wear</span>
         <h3 class="cat-name">Bubu<br>Dresses</h3>
-        <p class="cat-count">8 styles available</p>
+        <p class="cat-count">12 styles available</p>
         <span class="cat-arrow">Shop Now →</span>
       </div>
     </a>
     <a href="/shop?cat=fabrics" class="cat-card">
-      <img src="/images/fabrics/spiral-adinkra-batik.jpg" alt="Fabrics">
+      <img src="/images/fabrics/afroposh_ankara3.jpg" alt="Fabrics">
       <div class="cat-overlay">
         <span class="cat-label">Wholesale & Retail</span>
         <h3 class="cat-name">Ankara<br>Fabrics</h3>
-        <p class="cat-count">8 prints · 6-yard bales</p>
+        <p class="cat-count">9 prints · 6-yard bales</p>
         <span class="cat-arrow">Shop Now →</span>
       </div>
     </a>
     <a href="/shop?cat=accessories" class="cat-card">
-      <img src="/images/accessories/beaded-jewellery-set.jpg" alt="Accessories">
+      <img src="/images/accessories/afroposh_combo_set.jpg" alt="Accessories">
       <div class="cat-overlay">
         <span class="cat-label">Artisan Made</span>
         <h3 class="cat-name">Beads &<br>Accessories</h3>
@@ -412,31 +416,37 @@ import '../styles/global.css';
 const RATES = { NGN: 1, USD: 1/1550, GBP: 1/1950, FCFA: 2.6, GHS: 1000/10300 };
 const SYMS  = { NGN: '₦', USD: '$', GBP: '£', FCFA: 'FCFA ', GHS: 'GHS ' };
 let currency = 'NGN';
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('afroposh_cart') || '[]');
+let wishlist = JSON.parse(localStorage.getItem('afroposh_wish') || '[]');
 
 const PRODUCTS = [
-  { id:1,  name:'Tribal Geometric Maxi Bubu',      cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/tribal-geometric-maxi.jpg',  price:35000, badge:'new',       desc:'Bold geometric patterns in hot pink, black, and cobalt blue. Full-length maxi with wide sleeves and deep V-neck. One size drapes beautifully across all body types.' },
-  { id:2,  name:'Red Teal Tribal Fringe Maxi',     cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/red-teal-fringe-maxi.jpg',   price:38000, badge:'new',       desc:'Striking red and teal zigzag pattern with artisan tassel fringe at the chest. Side slit for movement. A true statement piece.' },
-  { id:3,  name:'Royal Blue & Mustard Grid Maxi',  cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/royal-blue-mustard-grid.jpg', price:32000, badge:null,       desc:'Clean colour-block in cobalt blue grid print with solid mustard bodice. Deep pockets. Elegant enough for formal occasions, comfortable enough for daily wear.' },
-  { id:4,  name:'Olive Gold Stripe Maxi',          cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/olive-gold-stripe-maxi.jpg', price:36000, badge:null,        desc:'Sophisticated earth-tone vertical stripes in olive, gold, and charcoal. Layered V-collar with tassel cuff details.' },
-  { id:5,  name:'Mudcloth Bogolan Bubu',           cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/mudcloth-brown-bubu.jpg',     price:30000, badge:null,       desc:'Inspired by West African bogolan tradition. Rich brown base with white symbol motifs and bold colour panel accents.' },
-  { id:6,  name:'Forest Green Short Bubu',         cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/forest-green-short-bubu.jpg', price:27000, badge:'new',      desc:'Knee-length in deep forest green with woven tribal stripe detail. Gold and grey fringe accent pocket. The versatile piece.' },
-  { id:7,  name:'Mustard Mixed Print Maxi',        cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/mustard-mixed-print-maxi.jpg',price:34000, badge:null,       desc:'Solid mustard bodice transitions into complex mixed African print. Deep pockets. Effortless luxury.' },
-  { id:8,  name:'Blue Mustard Grid Maxi',          cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/blue-mustard-grid-2.jpg',     price:32000, badge:null,       desc:'The beloved Royal Blue & Mustard grid. Natural light photography reveals the true richness of the fabric texture.' },
-  { id:9,  name:'Ocean Wave Batik',                cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/wave-batik.jpg',              price:25000, badge:'wholesale', desc:'Teal, red, and deep blue wave pattern. 6-yard bale. Premium hand-dyed with excellent drape.', moq:'6 yards' },
-  { id:10, name:'Adinkra Symbol Batik',            cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/adinkra-symbol-batik.jpg',    price:25000, badge:'wholesale', desc:'Rich purple and terracotta with traditional Adinkra symbols. 6-yard bale.', moq:'6 yards' },
-  { id:11, name:'Spiral Adinkra Batik',            cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/spiral-adinkra-batik.jpg',    price:25000, badge:'wholesale', desc:'Vibrant orange-gold and turquoise with spiral Adinkra motifs. 6-yard bale. Bestseller.', moq:'6 yards' },
-  { id:12, name:'Galaxy Night Batik',              cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/galaxy-batik.jpg',            price:25000, badge:'wholesale', desc:'Deep blue-purple with cosmic speckled effect. 6-yard bale. Luxurious and dramatic.', moq:'6 yards' },
-  { id:13, name:'Mandala Fire Batik',              cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/mandala-fire-batik.jpg',      price:27000, badge:'wholesale', desc:'Hot pink, orange, and red floral mandala on black. 6-yard bale. Maximum drama.', moq:'6 yards' },
-  { id:14, name:'Emerald Diamond Batik',           cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/emerald-diamond-batik.jpg',   price:24000, badge:'wholesale', desc:'Forest green with geometric diamond overlay. 6-yard bale. Excellent for evening wear.', moq:'6 yards' },
-  { id:15, name:'Harvest Splatter Batik',          cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/harvest-splatter-batik.jpg',  price:23000, badge:'wholesale', desc:'Yellow, olive, orange, and black splatter technique. 6-yard bale. Earthy and vibrant.', moq:'6 yards' },
-  { id:16, name:'Teal Rust Crackle Batik',         cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/teal-rust-crackle-batik.jpg', price:24000, badge:'wholesale', desc:'Teal with rust crackle texture. 6-yard bale. Mark of premium hand batik.', moq:'6 yards' },
-  { id:17, name:'Ankara Tote Bag',                 cat:'accessories', catLabel:'Bag',           img:'/images/accessories/ankara-tote-hat.jpg',     price:15000, badge:'new',       desc:'Jute and Ankara fabric tote with rope handles. 3 prints available. Pairs with any Bubu.' },
-  { id:18, name:'Zulu Beaded Collar Necklace',     cat:'accessories', catLabel:'Jewellery',     img:'/images/accessories/zulu-collar-necklace.jpg',price:28000, badge:'new',       desc:'Architectural Zulu-inspired beaded collar. Blue, green, and black geometric pattern with pendant drop.' },
-  { id:19, name:'Beaded Leather Sandals',          cat:'accessories', catLabel:'Footwear',      img:'/images/accessories/beaded-sandals.jpg',       price:18000, badge:null,       desc:'Handcrafted dark leather sandals with intricate beaded floral embellishments. Each pair is unique.' },
-  { id:20, name:'Zulu Fringe Necklace',            cat:'accessories', catLabel:'Jewellery',     img:'/images/accessories/zulu-fringe-necklaces.jpg',price:22000, badge:null,       desc:'Classic Zulu beaded necklace with geometric diamond chest plate and cascading fringe drops.' },
-  { id:21, name:'Beaded Watch Cuff',               cat:'accessories', catLabel:'Jewellery',     img:'/images/accessories/beaded-watch-cuff.jpg',    price:20000, badge:'new',       desc:'Multicolour seed bead wide cuff with integrated watch face. The wristwear that tells time and tells your story.' },
-  { id:22, name:'Full Beaded Set + Clutch',        cat:'accessories', catLabel:'Jewellery Set', img:'/images/accessories/beaded-jewellery-set.jpg', price:55000, badge:'new',       desc:'Complete set: choker, long necklace, cuff bracelet, and leather clutch with bead embellishment. Gift-ready.' },
+  { id:1,  name:'Blue Patchwork Short Bubu',       cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu.jpg',    price:27000, badge:'new',       desc:'Short-length patchwork in blue, black, and orange colour-blocks with wide sleeves and deep V-neck.' },
+  { id:2,  name:'Tribal Geometric Maxi Bubu',      cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu01.jpg',  price:35000, badge:'new',       desc:'Bold geometric patterns in hot pink, black, and cobalt blue. Full-length maxi with wide sleeves.' },
+  { id:3,  name:'Red Teal Fringe Maxi',            cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu2.jpg',   price:38000, badge:'new',       desc:'Striking red and teal zigzag with artisan tassel fringe at the chest. Side slit for movement.' },
+  { id:4,  name:'Royal Blue & Mustard Grid Maxi',  cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu3.jpg',   price:32000, badge:null,        desc:'Clean colour-block in cobalt blue grid print with solid mustard bodice. Deep pockets.' },
+  { id:5,  name:'Olive Gold Stripe Maxi',          cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu4.jpg',   price:36000, badge:null,        desc:'Sophisticated earth-tone vertical stripes in olive, gold, and charcoal.' },
+  { id:6,  name:'Mudcloth Bogolan Bubu',           cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu6.jpg',   price:30000, badge:null,        desc:'Inspired by West African bogolan tradition. Rich brown base with yellow and blue accents.' },
+  { id:7,  name:'Forest Green Short Bubu',         cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu7.jpg',   price:27000, badge:'new',       desc:'Knee-length in deep forest green with woven kente stripe detail and fringe pocket.' },
+  { id:8,  name:'Mustard Mixed Print Maxi',        cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu8.jpg',   price:34000, badge:null,        desc:'Solid mustard bodice transitions into complex mixed African print with geometric hem.' },
+  { id:9,  name:'Black Gold Fringe Short Bubu',    cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu9.jpg',   price:29000, badge:null,        desc:'Black and gold striped short dress with fringe hem detail. Perfect for casual outings.' },
+  { id:10, name:'Brown Stripe Heritage Maxi',      cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu10.jpg',  price:33000, badge:null,        desc:'Earthy brown and grey stripe with geometric border print at hem. Full maxi length.' },
+  { id:11, name:'Green Kente Short Bubu',          cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu11.jpg',  price:28000, badge:'new',       desc:'Deep green with kente-inspired woven accents, fringe pocket detail. Knee length.' },
+  { id:12, name:'Burgundy Navy Stripe Bubu',       cat:'bubus',       catLabel:'Bubu Dress',    img:'/images/dresses/afroposh_bubu12.jpg',  price:28000, badge:null,        desc:'Rich burgundy and navy vertical stripes with fringe hem. Classic short bubu silhouette.' },
+  { id:13, name:'Galaxy Night Batik',              cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/afroposh_ankara.jpg',  price:25000, badge:'wholesale', desc:'Deep blue-purple with cosmic speckled effect. 6-yard bale.', moq:'6 yards' },
+  { id:14, name:'Ocean Wave Batik',                cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/afroposh_ankara1.jpg', price:25000, badge:'wholesale', desc:'Teal, red, and deep blue wave pattern. 6-yard bale.', moq:'6 yards' },
+  { id:15, name:'Adinkra Symbol Batik',            cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/afroposh_ankara2.jpg', price:25000, badge:'wholesale', desc:'Rich red and purple with Adinkra symbols. 6-yard bale.', moq:'6 yards' },
+  { id:16, name:'Spiral Adinkra Batik',            cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/afroposh_ankara3.jpg', price:25000, badge:'wholesale', desc:'Orange-gold and turquoise with spiral Adinkra motifs. 6-yard bale.', moq:'6 yards' },
+  { id:17, name:'Mandala Fire Batik',              cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/afroposh_ankara4.jpg', price:27000, badge:'wholesale', desc:'Hot pink, orange, and red floral mandala on black. 6-yard bale.', moq:'6 yards' },
+  { id:18, name:'Emerald Diamond Batik',           cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/afroposh_ankara5.jpg', price:24000, badge:'wholesale', desc:'Forest green with geometric diamond overlay. 6-yard bale.', moq:'6 yards' },
+  { id:19, name:'Harvest Splatter Batik',          cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/afroposh_ankara6.jpg', price:23000, badge:'wholesale', desc:'Yellow, olive, orange, and black splatter technique. 6-yard bale.', moq:'6 yards' },
+  { id:20, name:'Teal Rust Crackle Batik',         cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/afroposh_ankara7.jpg', price:24000, badge:'wholesale', desc:'Teal with rust crackle marble texture. 6-yard bale.', moq:'6 yards' },
+  { id:21, name:'Rainbow Stripe Batik',            cat:'fabrics',     catLabel:'Ankara Fabric', img:'/images/fabrics/afroposh_ankara8.jpg', price:24000, badge:'wholesale', desc:'Blue, orange, and black striped tie-dye batik. 6-yard bale.', moq:'6 yards' },
+  { id:22, name:'Ankara Tote Bag & Hat Set',       cat:'accessories', catLabel:'Bag & Hat',     img:'/images/accessories/afroposh_hat_and_bag.jpg',   price:15000, badge:'new',  desc:'Jute and Ankara fabric tote bags in 3 prints with matching sun hat.' },
+  { id:23, name:'Zulu Beaded Collar Necklace',     cat:'accessories', catLabel:'Jewellery',     img:'/images/accessories/afroposh_necklace.jpg',      price:28000, badge:'new',  desc:'Architectural Zulu-inspired beaded collar. Blue, green, and black geometric pattern.' },
+  { id:24, name:'Beaded Necklace Collection',      cat:'accessories', catLabel:'Jewellery',     img:'/images/accessories/afroposh-necklace.jpg',      price:22000, badge:null,   desc:'Vibrant multi-colour beaded necklaces. Handcrafted diamond patterns with fringe detail.' },
+  { id:25, name:'Beaded Leather Sandals',          cat:'accessories', catLabel:'Footwear',      img:'/images/accessories/afroposh_sandals.jpg',       price:18000, badge:null,   desc:'Handcrafted dark leather sandals with intricate beaded floral embellishments.' },
+  { id:26, name:'Beaded Watch Cuff',               cat:'accessories', catLabel:'Jewellery',     img:'/images/accessories/afroposh_wristwatch.jpg',    price:20000, badge:'new',  desc:'Multicolour seed bead wide cuff with integrated watch face.' },
+  { id:27, name:'Full Beaded Set + Clutch',        cat:'accessories', catLabel:'Jewellery Set', img:'/images/accessories/afroposh_combo_set.jpg',     price:55000, badge:'new',  desc:'Complete set: choker, long necklace, cuff bracelet, and leather clutch.' },
 ];
 
 // ── CURRENCY ──────────────────────────────────────────
@@ -510,16 +520,44 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// ── WISHLIST ──────────────────────────────────────────
+function toggleFav(id) {
+  const idx = wishlist.indexOf(id);
+  if (idx > -1) { wishlist.splice(idx, 1); showToast('Removed from wishlist'); }
+  else { wishlist.push(id); showToast('♥ Added to wishlist'); }
+  localStorage.setItem('afroposh_wish', JSON.stringify(wishlist));
+  updateWishCount();
+  renderFeaturedDresses(); renderHomeFabrics(); renderHomeAccessories();
+}
+function updateWishCount() {
+  const el = document.getElementById('wishCount');
+  if (wishlist.length > 0) { el.style.display = 'flex'; el.textContent = wishlist.length; }
+  else { el.style.display = 'none'; }
+}
+function toggleWishlistPanel() { showToast('Wishlist: ' + wishlist.length + ' items saved'); }
+
+// ── AUTH CHECK ────────────────────────────────────────
+function checkAuth() {
+  const user = JSON.parse(localStorage.getItem('afroposh_user') || 'null');
+  const btn = document.getElementById('adminBtn');
+  if (user) {
+    btn.textContent = user.role === 'admin' ? '📊 Dashboard' : '👤 ' + user.firstName;
+    btn.href = user.role === 'admin' ? '/admin' : '#';
+    if (user.role !== 'admin') btn.onclick = function(e) { e.preventDefault(); if(confirm('Log out?')) { localStorage.removeItem('afroposh_user'); location.reload(); } };
+  }
+}
+
 // ── PRODUCT CARD BUILDERS ─────────────────────────────
 function buildProductCard(p) {
   const badge = p.badge === 'new' ? '<span class="product-badge badge-new">New</span>'
               : p.badge === 'wholesale' ? '<span class="product-badge badge-wholesale">Wholesale</span>' : '';
+  const isFav = wishlist.includes(p.id);
   return `
     <div class="product-card" onclick="openModal(${p.id})">
       <div class="product-img-wrap">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
         ${badge}
-        <span class="product-wishlist">🤍</span>
+        <button style="position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.85);border:none;font-size:16px;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);" onclick="event.stopPropagation();toggleFav(${p.id})">${isFav ? '❤️' : '🤍'}</button>
       </div>
       <div class="product-info">
         <p class="product-cat-label">${p.catLabel}</p>
@@ -536,10 +574,12 @@ function buildProductCard(p) {
 }
 
 function buildFabricCard(p) {
+  const isFav = wishlist.includes(p.id);
   return `
     <div class="fabric-card" onclick="openModal(${p.id})">
-      <div class="fabric-img-wrap">
+      <div class="fabric-img-wrap" style="position:relative;">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <button style="position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.85);border:none;font-size:16px;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);" onclick="event.stopPropagation();toggleFav(${p.id})">${isFav ? '❤️' : '🤍'}</button>
       </div>
       <div class="fabric-info">
         <h3 class="fabric-name">${p.name}</h3>
@@ -549,7 +589,7 @@ function buildFabricCard(p) {
             <div class="fabric-price">${fmt(p.price)}</div>
             ${currency !== 'USD' ? `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted)">≈ $${Math.round(p.price/1550)}</div>` : ''}
           </div>
-          <span class="wholesale-tag">Wholesale</span>
+          <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})" style="font-size:16px;">+</button>
         </div>
       </div>
     </div>`;
@@ -630,12 +670,14 @@ function addToCart(id) {
   const ex = cart.find(i => i.id === id);
   if (ex) ex.qty++;
   else cart.push({ ...p, qty: 1 });
+  localStorage.setItem('afroposh_cart', JSON.stringify(cart));
   updateCartDisplay();
   showToast(`✓ ${p.name} added to cart`);
 }
 
 function removeFromCart(id) {
   cart = cart.filter(i => i.id !== id);
+  localStorage.setItem('afroposh_cart', JSON.stringify(cart));
   updateCartDisplay();
 }
 
@@ -680,6 +722,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFeaturedDresses();
   renderHomeFabrics();
   renderHomeAccessories();
+  updateCartDisplay();
+  updateWishCount();
+  checkAuth();
   startSlideshow();
 });
 </script>

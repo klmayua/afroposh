@@ -1,0 +1,256 @@
+---
+import '../styles/global.css';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Afroposh Afriture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body style="background:var(--surface);min-height:100vh;display:flex;flex-direction:column;">
+
+<!-- NAV (minimal) -->
+<nav class="main-nav scrolled" id="mainNav" style="position:relative;">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Afroposh <span>Afriture</span></a>
+    <a href="/shop" style="font-size:12px;color:var(--ink-muted);text-decoration:none;">← Back to Shop</a>
+  </div>
+</nav>
+
+<main style="flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px;">
+  <div style="width:100%;max-width:440px;">
+
+    <!-- LOGIN CARD -->
+    <div id="loginCard" style="background:white;border:1px solid var(--border);border-radius:12px;padding:48px 40px;">
+      <div style="text-align:center;margin-bottom:32px;">
+        <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:500;margin-bottom:6px;">Welcome Back</h1>
+        <p style="font-size:13px;color:var(--ink-muted);">Sign in to your Afroposh account</p>
+      </div>
+
+      <!-- ROLE TOGGLE -->
+      <div style="display:flex;border:1.5px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:28px;">
+        <button id="tabCustomer" onclick="setRole('customer')" style="flex:1;padding:10px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;background:var(--ink);color:white;">Customer</button>
+        <button id="tabAdmin" onclick="setRole('admin')" style="flex:1;padding:10px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;background:white;color:var(--ink-muted);">Admin</button>
+      </div>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div style="margin-bottom:18px;">
+          <label class="form-lbl">Email Address</label>
+          <input class="form-ctrl" type="email" id="loginEmail" required placeholder="you@email.com">
+        </div>
+        <div style="margin-bottom:24px;">
+          <label class="form-lbl">Password</label>
+          <input class="form-ctrl" type="password" id="loginPassword" required placeholder="••••••••">
+        </div>
+        <div id="loginError" style="display:none;background:#FEF0EF;border:1px solid #F5C6CB;border-radius:4px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#C0392B;"></div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:16px;">Sign In →</button>
+      </form>
+
+      <div style="text-align:center;margin-top:20px;">
+        <p style="font-size:11px;color:var(--ink-muted);">Don't have an account? <a href="#" onclick="showRegister()" style="color:var(--gold);font-weight:600;text-decoration:none;">Create Account</a></p>
+      </div>
+
+      <!-- DEMO CREDENTIALS -->
+      <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border);">
+        <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-muted);text-transform:uppercase;margin-bottom:10px;">Demo Credentials</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <button onclick="fillDemo('customer')" style="padding:10px;border:1px solid var(--border);border-radius:4px;background:var(--surface);cursor:pointer;text-align:left;font-family:'DM Mono',monospace;font-size:10px;">
+            <strong style="display:block;margin-bottom:2px;">Customer</strong>
+            customer@afroposh.com<br>demo2026
+          </button>
+          <button onclick="fillDemo('admin')" style="padding:10px;border:1px solid var(--border);border-radius:4px;background:var(--surface);cursor:pointer;text-align:left;font-family:'DM Mono',monospace;font-size:10px;">
+            <strong style="display:block;margin-bottom:2px;">Admin</strong>
+            admin@afroposh.com<br>admin2026
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTER CARD (hidden) -->
+    <div id="registerCard" style="display:none;background:white;border:1px solid var(--border);border-radius:12px;padding:48px 40px;">
+      <div style="text-align:center;margin-bottom:32px;">
+        <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:500;margin-bottom:6px;">Create Account</h1>
+        <p style="font-size:13px;color:var(--ink-muted);">Join the Afroposh family</p>
+      </div>
+      <form id="registerForm" onsubmit="handleRegister(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
+          <div>
+            <label class="form-lbl">First Name</label>
+            <input class="form-ctrl" type="text" id="regFirst" required placeholder="First name">
+          </div>
+          <div>
+            <label class="form-lbl">Last Name</label>
+            <input class="form-ctrl" type="text" id="regLast" required placeholder="Last name">
+          </div>
+        </div>
+        <div style="margin-bottom:18px;">
+          <label class="form-lbl">Email Address</label>
+          <input class="form-ctrl" type="email" id="regEmail" required placeholder="you@email.com">
+        </div>
+        <div style="margin-bottom:18px;">
+          <label class="form-lbl">WhatsApp Number</label>
+          <input class="form-ctrl" type="tel" id="regPhone" required placeholder="+234 8XX XXX XXXX">
+        </div>
+        <div style="margin-bottom:18px;">
+          <label class="form-lbl">Country</label>
+          <select class="form-ctrl" id="regCountry" required>
+            <option value="">Select country</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="Ghana">Ghana</option>
+            <option value="Cameroon">Cameroon</option>
+            <option value="UK">United Kingdom</option>
+            <option value="US">United States</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div style="margin-bottom:24px;">
+          <label class="form-lbl">Password</label>
+          <input class="form-ctrl" type="password" id="regPassword" required placeholder="Min 6 characters" minlength="6">
+        </div>
+        <div id="regError" style="display:none;background:#FEF0EF;border:1px solid #F5C6CB;border-radius:4px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#C0392B;"></div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:16px;">Create Account →</button>
+      </form>
+      <div style="text-align:center;margin-top:20px;">
+        <p style="font-size:11px;color:var(--ink-muted);">Already have an account? <a href="#" onclick="showLogin()" style="color:var(--gold);font-weight:600;text-decoration:none;">Sign In</a></p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DEMO USER DB (localStorage-backed) ────────────────
+const DEMO_USERS = [
+  { email:'customer@afroposh.com', password:'demo2026', firstName:'Amara', lastName:'Okafor', role:'customer', country:'Nigeria', phone:'+234 801 234 5678' },
+  { email:'admin@afroposh.com', password:'admin2026', firstName:'Joyce', lastName:'Admin', role:'admin', country:'Cameroon', phone:'+237 611 84837' },
+];
+
+let selectedRole = 'customer';
+
+function setRole(role) {
+  selectedRole = role;
+  document.getElementById('tabCustomer').style.background = role === 'customer' ? 'var(--ink)' : 'white';
+  document.getElementById('tabCustomer').style.color = role === 'customer' ? 'white' : 'var(--ink-muted)';
+  document.getElementById('tabAdmin').style.background = role === 'admin' ? 'var(--ink)' : 'white';
+  document.getElementById('tabAdmin').style.color = role === 'admin' ? 'white' : 'var(--ink-muted)';
+}
+
+function fillDemo(type) {
+  if (type === 'customer') {
+    document.getElementById('loginEmail').value = 'customer@afroposh.com';
+    document.getElementById('loginPassword').value = 'demo2026';
+    setRole('customer');
+  } else {
+    document.getElementById('loginEmail').value = 'admin@afroposh.com';
+    document.getElementById('loginPassword').value = 'admin2026';
+    setRole('admin');
+  }
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const password = document.getElementById('loginPassword').value;
+  const errEl = document.getElementById('loginError');
+
+  // Check demo users
+  let user = DEMO_USERS.find(u => u.email === email && u.password === password);
+
+  // Check registered users in localStorage
+  if (!user) {
+    const registered = JSON.parse(localStorage.getItem('afroposh_registered') || '[]');
+    const reg = registered.find(u => u.email === email && u.password === password);
+    if (reg) user = reg;
+  }
+
+  if (!user) {
+    errEl.style.display = 'block';
+    errEl.textContent = 'Invalid email or password. Try the demo credentials below.';
+    return;
+  }
+
+  // Validate role
+  if (selectedRole === 'admin' && user.role !== 'admin') {
+    errEl.style.display = 'block';
+    errEl.textContent = 'This account does not have admin privileges.';
+    return;
+  }
+
+  // Login success
+  const session = { ...user, password: undefined, loggedInAt: new Date().toISOString() };
+  delete session.password;
+  localStorage.setItem('afroposh_user', JSON.stringify(session));
+
+  showToast('✓ Welcome back, ' + user.firstName + '!');
+  setTimeout(() => {
+    window.location.href = user.role === 'admin' ? '/admin' : '/shop';
+  }, 800);
+}
+
+function handleRegister(e) {
+  e.preventDefault();
+  const email = document.getElementById('regEmail').value.trim().toLowerCase();
+  const password = document.getElementById('regPassword').value;
+  const firstName = document.getElementById('regFirst').value.trim();
+  const lastName = document.getElementById('regLast').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+  const country = document.getElementById('regCountry').value;
+  const errEl = document.getElementById('regError');
+
+  // Check if email already exists
+  const existing = DEMO_USERS.find(u => u.email === email);
+  const registered = JSON.parse(localStorage.getItem('afroposh_registered') || '[]');
+  const existingReg = registered.find(u => u.email === email);
+
+  if (existing || existingReg) {
+    errEl.style.display = 'block';
+    errEl.textContent = 'An account with this email already exists.';
+    return;
+  }
+
+  // Register
+  const newUser = { email, password, firstName, lastName, role: 'customer', country, phone };
+  registered.push(newUser);
+  localStorage.setItem('afroposh_registered', JSON.stringify(registered));
+
+  // Auto-login
+  const session = { ...newUser, password: undefined, loggedInAt: new Date().toISOString() };
+  delete session.password;
+  localStorage.setItem('afroposh_user', JSON.stringify(session));
+
+  showToast('✓ Account created! Welcome, ' + firstName + '!');
+  setTimeout(() => { window.location.href = '/shop'; }, 800);
+}
+
+function showRegister() {
+  document.getElementById('loginCard').style.display = 'none';
+  document.getElementById('registerCard').style.display = 'block';
+}
+function showLogin() {
+  document.getElementById('registerCard').style.display = 'none';
+  document.getElementById('loginCard').style.display = 'block';
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Redirect if already logged in
+document.addEventListener('DOMContentLoaded', () => {
+  const user = JSON.parse(localStorage.getItem('afroposh_user') || 'null');
+  if (user) {
+    window.location.href = user.role === 'admin' ? '/admin' : '/shop';
+  }
+});
+</script>
+
+</body>
+</html>

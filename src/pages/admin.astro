@@ -490,6 +490,14 @@ document.getElementById('uploadZone').addEventListener('click', () => {
   document.getElementById('fileInput').click();
 });
 
+// ── AUTH GUARD ────────────────────────────────────────
+(function() {
+  const user = JSON.parse(localStorage.getItem('afroposh_user') || 'null');
+  if (!user || user.role !== 'admin') {
+    window.location.href = '/login';
+  }
+})();
+
 // ── TOAST ─────────────────────────────────────────────
 function showToast(msg) {
   const t = document.getElementById('toast');
