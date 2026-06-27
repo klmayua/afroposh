@@ -1,0 +1,314 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wholesale Programme — Afroposh Afriture</title>
+  <meta name="description" content="Trade partner programme. Bulk Ankara fabrics, Bubu dresses, and accessories at wholesale pricing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/global.css">
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  🌍 Pan-African delivery · Lagos · Accra · Yaoundé · Worldwide &nbsp;|&nbsp;
+  <span>Premium Batik Fabrics now in stock — Wholesale available</span>
+</div>
+
+<!-- NAV -->
+<nav class="main-nav scrolled" id="mainNav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Afroposh <span>Afriture</span></a>
+    <ul class="nav-links">
+      <li><a href="/shop?cat=bubus">Bubu Dresses</a></li>
+      <li><a href="/shop?cat=fabrics">Fabrics</a></li>
+      <li><a href="/shop?cat=accessories">Accessories</a></li>
+      <li><a href="/wholesale">Wholesale</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <select id="currencySelect" onchange="setCurrency(this.value)"
+        style="font-family:'DM Mono',monospace;font-size:11px;border:1px solid var(--border-strong);border-radius:3px;padding:6px 10px;background:white;color:var(--ink);cursor:pointer;letter-spacing:0.05em;">
+        <option value="NGN">₦ NGN</option>
+        <option value="USD">$ USD</option>
+        <option value="GBP">£ GBP</option>
+        <option value="FCFA">FCFA</option>
+        <option value="GHS">GHS</option>
+      </select>
+      <button onclick="toggleCart()" style="position:relative;width:40px;height:40px;border-radius:50%;background:var(--surface);border:1px solid var(--border-strong);color:var(--ink);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        🛒
+        <span id="cartCount" data-cart-count style="position:absolute;top:-2px;right:-2px;width:18px;height:18px;background:var(--gold);border-radius:50%;font-size:10px;font-weight:700;color:white;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;">0</span>
+      </button>
+      <a href="/admin" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border:1.5px solid var(--ink);border-radius:3px;color:var(--ink);transition:all 0.3s;text-decoration:none;">Dashboard</a>
+    </div>
+  </div>
+</nav>
+
+<!-- DARK HERO -->
+<section style="background:var(--ink);padding:160px 32px 80px;text-align:center;">
+  <div style="max-width:800px;margin:0 auto;">
+    <p class="section-eyebrow" style="color:var(--gold-light);justify-content:center;">Trade Partners</p>
+    <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(38px,5vw,52px);font-weight:500;color:white;line-height:1.1;margin-bottom:16px;">
+      Wholesale <em style="font-style:italic;color:var(--gold-light);">Programme</em>
+    </h1>
+    <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.75;max-width:560px;margin:0 auto;">
+      Boutiques, tailors, fabric traders — we supply premium African fashion at scale. Direct sourcing, no middlemen, competitive margins.
+    </p>
+  </div>
+</section>
+
+<!-- TIER CARDS -->
+<section style="background:var(--surface);padding:80px 32px;">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+    <!-- Fabric Bales -->
+    <div style="background:white;border:1.5px solid var(--border);border-radius:10px;padding:40px 32px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:16px;">🧵</div>
+      <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:500;margin-bottom:8px;">Fabric Bales</h3>
+      <p style="font-family:'DM Mono',monospace;font-size:13px;color:var(--gold);font-weight:500;margin-bottom:12px;">from ₦21,000/bale</p>
+      <p style="font-size:13px;color:var(--ink-muted);line-height:1.6;">Minimum 6 yards per order. Premium hand-dyed batik in 8+ prints. Consistent quality, direct from our dyers.</p>
+      <div style="margin-top:20px;font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);letter-spacing:0.1em;text-transform:uppercase;">MIN 6 YARDS</div>
+    </div>
+    <!-- Ready-to-Wear Bulk -->
+    <div style="background:white;border:1.5px solid var(--border);border-radius:10px;padding:40px 32px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:16px;">👗</div>
+      <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:500;margin-bottom:8px;">Ready-to-Wear Bulk</h3>
+      <p style="font-family:'DM Mono',monospace;font-size:13px;color:var(--gold);font-weight:500;margin-bottom:12px;">from ₦22,000/piece</p>
+      <p style="font-size:13px;color:var(--ink-muted);line-height:1.6;">Minimum 5 units. Bubu dresses in multiple sizes and prints. Perfect for boutique restocks.</p>
+      <div style="margin-top:20px;font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);letter-spacing:0.1em;text-transform:uppercase;">MIN 5 UNITS</div>
+    </div>
+    <!-- Mixed Parcels -->
+    <div style="background:white;border:1.5px solid var(--border);border-radius:10px;padding:40px 32px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:16px;">📦</div>
+      <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:500;margin-bottom:8px;">Mixed Parcels</h3>
+      <p style="font-family:'DM Mono',monospace;font-size:13px;color:var(--gold);font-weight:500;margin-bottom:12px;">Custom pricing</p>
+      <p style="font-size:13px;color:var(--ink-muted);line-height:1.6;">Curated mix of dresses, fabrics, and accessories. Ideal for market stalls and pop-up shops. We build to your brief.</p>
+      <div style="margin-top:20px;font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);letter-spacing:0.1em;text-transform:uppercase;">CUSTOM BRIEF</div>
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRY FORM + WHY PARTNER -->
+<section style="max-width:1200px;margin:0 auto;padding:80px 32px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+    <!-- Form -->
+    <div>
+      <p class="section-eyebrow">Get Started</p>
+      <h2 class="section-title" style="margin-bottom:32px;">Trade <em>Inquiry</em></h2>
+      <form id="wholesaleForm" onsubmit="handleWholesaleSubmit(event)">
+        <div style="margin-bottom:18px;">
+          <label class="form-lbl">Full Name</label>
+          <input class="form-ctrl" type="text" name="name" required placeholder="Your full name">
+        </div>
+        <div style="margin-bottom:18px;">
+          <label class="form-lbl">Business / Brand Name</label>
+          <input class="form-ctrl" type="text" name="business" required placeholder="Your business name">
+        </div>
+        <div style="margin-bottom:18px;">
+          <label class="form-lbl">Country</label>
+          <select class="form-ctrl" name="country" required>
+            <option value="">Select country</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="Ghana">Ghana</option>
+            <option value="Cameroon">Cameroon</option>
+            <option value="UK">United Kingdom</option>
+            <option value="US">United States</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div style="margin-bottom:18px;">
+          <label class="form-lbl">Interest</label>
+          <select class="form-ctrl" name="interest" required>
+            <option value="">What are you interested in?</option>
+            <option value="Fabrics">Fabrics</option>
+            <option value="RTW Dresses">RTW Dresses</option>
+            <option value="Mixed">Mixed</option>
+            <option value="Accessories">Accessories</option>
+          </select>
+        </div>
+        <div style="margin-bottom:18px;">
+          <label class="form-lbl">Estimated Monthly Volume</label>
+          <input class="form-ctrl" type="text" name="volume" placeholder="e.g. 50 yards/month">
+        </div>
+        <div style="margin-bottom:24px;">
+          <label class="form-lbl">Message</label>
+          <textarea class="form-ctrl" name="message" rows="3" placeholder="Tell us about your needs..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Submit Inquiry →</button>
+      </form>
+    </div>
+
+    <!-- Why Partner -->
+    <div>
+      <p class="section-eyebrow">Why Us</p>
+      <h2 class="section-title" style="margin-bottom:32px;">Why <em>Partner</em></h2>
+      <div style="display:flex;flex-direction:column;gap:28px;">
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:44px;height:44px;background:var(--surface);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🌍</div>
+          <div>
+            <h4 style="font-size:15px;font-weight:600;margin-bottom:4px;">Pan-African Sourcing</h4>
+            <p style="font-size:13px;color:var(--ink-muted);line-height:1.6;">Direct from our ateliers and dyers — no middlemen. Sourced in Lagos, Accra, and Yaoundé.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:44px;height:44px;background:var(--surface);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📦</div>
+          <div>
+            <h4 style="font-size:15px;font-weight:600;margin-bottom:4px;">Reliable Shipping</h4>
+            <p style="font-size:13px;color:var(--ink-muted);line-height:1.6;">DHL, GIG Logistics, Aramex. Tracked parcels with delivery confirmation to 30+ countries.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:44px;height:44px;background:var(--surface);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">💳</div>
+          <div>
+            <h4 style="font-size:15px;font-weight:600;margin-bottom:4px;">Flexible Payments</h4>
+            <p style="font-size:13px;color:var(--ink-muted);line-height:1.6;">Flutterwave, Paystack, bank transfer. Pay in NGN, USD, GBP, or FCFA.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:44px;height:44px;background:var(--surface);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">💬</div>
+          <div>
+            <h4 style="font-size:15px;font-weight:600;margin-bottom:4px;">WhatsApp-First Support</h4>
+            <p style="font-size:13px;color:var(--ink-muted);line-height:1.6;">Real humans, fast responses. Order updates, custom requests, and stock checks — all via WhatsApp.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp CTA -->
+      <div style="margin-top:40px;background:var(--whatsapp);border-radius:10px;padding:28px;text-align:center;">
+        <p style="color:white;font-size:14px;font-weight:600;margin-bottom:4px;">Prefer to chat directly?</p>
+        <p style="color:rgba(255,255,255,0.8);font-size:12px;margin-bottom:16px;">Message us on WhatsApp for instant response</p>
+        <a href="https://wa.me/2371184837" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:white;color:var(--green-cta);font-size:14px;font-weight:700;padding:12px 24px;border-radius:6px;text-decoration:none;">
+          💬 +237 611 84837
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Afroposh <span>Afriture</span></div>
+        <p class="footer-desc">Premium Ankara Bubu dresses, batik fabrics, and artisan accessories. Celebrating African heritage through fashion.</p>
+        <div class="footer-presence">
+          <span class="presence-tag">Lagos</span>
+          <span class="presence-tag">Accra</span>
+          <span class="presence-tag">Yaoundé</span>
+          <span class="presence-tag">London</span>
+          <span class="presence-tag">Houston</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-head">Shop</div>
+        <ul class="footer-links">
+          <li><a href="/shop?cat=bubus">Bubu Dresses</a></li>
+          <li><a href="/shop?cat=fabrics">Ankara Fabrics</a></li>
+          <li><a href="/shop?cat=accessories">Accessories & Beads</a></li>
+          <li><a href="/wholesale">Wholesale</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Help</div>
+        <ul class="footer-links">
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns Policy</a></li>
+          <li><a href="https://wa.me/2371184837" target="_blank">WhatsApp Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Follow</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram @AfroposhAfritude</a></li>
+          <li><a href="#">TikTok @helpforhelp</a></li>
+          <li><a href="#">Facebook — Afro-posh Luxe</a></li>
+        </ul>
+        <div style="margin-top:22px;">
+          <div class="footer-col-head">WhatsApp Direct</div>
+          <a href="https://wa.me/2371184837" target="_blank" class="btn-whatsapp" style="margin-top:10px;font-size:12px;padding:10px 16px;">💬 +237 611 84837</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Afroposh Afriture. All rights reserved.</p>
+      <div class="footer-pay-logos">
+        <span class="footer-pay">FLUTTERWAVE</span>
+        <span class="footer-pay">PAYSTACK</span>
+        <span class="footer-pay">VISA</span>
+        <span class="footer-pay">MASTERCARD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h2 class="cart-head-title">Your Cart</h2>
+    <button class="cart-x" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div style="text-align:center;padding:60px 24px;">
+      <div style="font-size:48px;margin-bottom:14px;">🛍️</div>
+      <p style="font-size:15px;color:var(--ink-muted);">Your cart is empty.<br>Add something beautiful.</p>
+    </div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total-row">
+      <span class="cart-total-lbl">Total</span>
+      <span class="cart-total-val" id="cartTotal">₦0</span>
+    </div>
+    <button class="btn-checkout" onclick="window.location.href='/checkout'">🔒 Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const RATES = { NGN: 1, USD: 1/1550, GBP: 1/1950, FCFA: 2.6, GHS: 1000/10300 };
+const SYMS  = { NGN: '₦', USD: '$', GBP: '£', FCFA: 'FCFA ', GHS: 'GHS ' };
+let currency = 'NGN';
+let cart = JSON.parse(localStorage.getItem('afroposh_cart') || '[]');
+
+function fmt(ngn, cur = currency) {
+  const v = ngn * RATES[cur];
+  return SYMS[cur] + Math.round(v).toLocaleString();
+}
+function setCurrency(c) { currency = c; updateCartDisplay(); }
+
+function handleWholesaleSubmit(e) {
+  e.preventDefault();
+  showToast('✓ Inquiry submitted! We will contact you within 24 hours.');
+  e.target.reset();
+}
+
+function updateCartDisplay() {
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('cartTotal').textContent = fmt(total);
+}
+
+function toggleCart() {
+  document.getElementById('cartDrawer').classList.toggle('open');
+  document.getElementById('cartBackdrop').classList.toggle('open');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+document.addEventListener('DOMContentLoaded', () => { updateCartDisplay(); });
+</script>
+
+</body>
+</html>

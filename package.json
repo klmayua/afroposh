@@ -1,0 +1,17 @@
+{
+  "name": "afroposh-afriture",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Premium African Fashion E-Commerce — Afroposh Afriture",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "tailwindcss": "^3.4.0"
+  }
+}

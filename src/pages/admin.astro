@@ -1,0 +1,503 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Afroposh Afriture Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/global.css">
+</head>
+<body>
+
+<div class="admin-wrap">
+  <!-- ADMIN NAV -->
+  <div class="admin-nav-bar">
+    <a href="/" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:600;text-decoration:none;color:var(--ink);">Afroposh <span style="color:var(--gold);">Afriture</span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted);letter-spacing:0.1em;padding:4px 10px;border:1px solid var(--border);border-radius:3px;">AUTH VIA SUPABASE IN PRODUCTION</span>
+      <a href="/" style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;">← Store</a>
+    </div>
+  </div>
+
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-head">Store</div>
+        <button class="sidebar-link active" onclick="showTab('overview')">📊 Dashboard</button>
+        <button class="sidebar-link" onclick="showTab('orders')">📦 Orders <span class="sidebar-badge">3</span></button>
+        <button class="sidebar-link" onclick="showTab('add_product')">➕ Add Product</button>
+        <button class="sidebar-link" onclick="showTab('products')">👗 Products</button>
+        <button class="sidebar-link" onclick="showTab('pricing')">💰 Rates & Pricing</button>
+      </div>
+      <div class="sidebar-section" style="margin-top:auto;padding-top:20px;border-top:1px solid var(--border);">
+        <a href="https://wa.me/2371184837" target="_blank" class="sidebar-link" style="color:var(--whatsapp);">💬 WhatsApp</a>
+        <a href="/shop" class="sidebar-link">🏪 View Store</a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- ═══════════ OVERVIEW TAB ═══════════ -->
+      <div id="tab-overview" class="admin-tab">
+        <h2 style="font-size:20px;font-weight:600;margin-bottom:24px;">Dashboard Overview</h2>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-icon-box" style="background:#E5F4EE;">💰</div>
+            <div class="stat-val">₦2,450,000</div>
+            <div class="stat-lbl">Revenue this month</div>
+            <div class="stat-chg" style="color:var(--green-cta);">↑ +23% vs last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-box" style="background:#E5EFF8;">📦</div>
+            <div class="stat-val">47</div>
+            <div class="stat-lbl">Orders this month</div>
+            <div class="stat-chg" style="color:var(--green-cta);">↑ +12 new orders</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-box" style="background:#FDF3E0;">👗</div>
+            <div class="stat-val">22</div>
+            <div class="stat-lbl">Products listed</div>
+            <div class="stat-chg" style="color:var(--ink-muted);">8 dresses · 8 fabrics · 6 acc</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-box" style="background:#FEF0EF;">⏳</div>
+            <div class="stat-val">3</div>
+            <div class="stat-lbl">Pending orders</div>
+            <div class="stat-chg" style="color:#B07D1A;">Awaiting payment confirmation</div>
+          </div>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="panel" style="margin-bottom:24px;">
+          <div class="panel-head">
+            <span class="panel-head-title">Recent Orders</span>
+            <button class="panel-head-action" onclick="showTab('orders')">View All →</button>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Item</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1719</td>
+                <td>Amara O.</td>
+                <td>Tribal Geometric Maxi</td>
+                <td style="font-family:'DM Mono',monospace;">₦35,000</td>
+                <td><span class="status-pill pill-paid">● Paid</span></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1718</td>
+                <td>Kwame M.</td>
+                <td>Spiral Adinkra Batik ×2</td>
+                <td style="font-family:'DM Mono',monospace;">₦50,000</td>
+                <td><span class="status-pill pill-shipped">● Shipped</span></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1717</td>
+                <td>Jessica T.</td>
+                <td>Full Beaded Set + Clutch</td>
+                <td style="font-family:'DM Mono',monospace;">₦55,000</td>
+                <td><span class="status-pill pill-pending">● Pending</span></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1716</td>
+                <td>Ngozi A.</td>
+                <td>Red Teal Fringe Maxi</td>
+                <td style="font-family:'DM Mono',monospace;">₦38,000</td>
+                <td><span class="status-pill pill-paid">● Paid</span></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1715</td>
+                <td>David K.</td>
+                <td>Galaxy Night Batik ×3</td>
+                <td style="font-family:'DM Mono',monospace;">₦75,000</td>
+                <td><span class="status-pill pill-paid">● Paid</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Quick Actions -->
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <button class="btn-primary" onclick="showTab('add_product')">➕ Add Product</button>
+          <a href="https://wa.me/2371184837" target="_blank" class="btn-whatsapp">💬 Open WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- ═══════════ ORDERS TAB ═══════════ -->
+      <div id="tab-orders" class="admin-tab" style="display:none;">
+        <h2 style="font-size:20px;font-weight:600;margin-bottom:24px;">Orders</h2>
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-head-title">All Orders</span>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Item</th>
+                <th>Amount</th>
+                <th>Market</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1719</td>
+                <td style="font-size:12px;">25 Jun 2025</td>
+                <td>Amara Okafor</td>
+                <td>Tribal Geometric Maxi</td>
+                <td style="font-family:'DM Mono',monospace;">₦35,000</td>
+                <td>🇳🇬 Lagos</td>
+                <td><span class="status-pill pill-paid">● Paid</span></td>
+                <td><button style="font-size:10px;padding:5px 12px;border:1px solid var(--border-strong);border-radius:3px;background:white;cursor:pointer;font-weight:600;" onclick="markShipped(this)">Mark Shipped</button></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1718</td>
+                <td style="font-size:12px;">24 Jun 2025</td>
+                <td>Kwame Mensah</td>
+                <td>Spiral Adinkra ×2</td>
+                <td style="font-family:'DM Mono',monospace;">₦50,000</td>
+                <td>🇬🇭 Accra</td>
+                <td><span class="status-pill pill-shipped">● Shipped</span></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1717</td>
+                <td style="font-size:12px;">24 Jun 2025</td>
+                <td>Jessica Thompson</td>
+                <td>Full Beaded Set + Clutch</td>
+                <td style="font-family:'DM Mono',monospace;">₦55,000</td>
+                <td>🇬🇧 London</td>
+                <td><span class="status-pill pill-pending">● Pending</span></td>
+                <td><button style="font-size:10px;padding:5px 12px;border:1px solid var(--border-strong);border-radius:3px;background:white;cursor:pointer;font-weight:600;" onclick="markShipped(this)">Mark Shipped</button></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1716</td>
+                <td style="font-size:12px;">23 Jun 2025</td>
+                <td>Ngozi Adeyemi</td>
+                <td>Red Teal Fringe Maxi</td>
+                <td style="font-family:'DM Mono',monospace;">₦38,000</td>
+                <td>🇳🇬 Abuja</td>
+                <td><span class="status-pill pill-paid">● Paid</span></td>
+                <td><button style="font-size:10px;padding:5px 12px;border:1px solid var(--border-strong);border-radius:3px;background:white;cursor:pointer;font-weight:600;" onclick="markShipped(this)">Mark Shipped</button></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1715</td>
+                <td style="font-size:12px;">22 Jun 2025</td>
+                <td>David Kofi</td>
+                <td>Galaxy Night Batik ×3</td>
+                <td style="font-family:'DM Mono',monospace;">₦75,000</td>
+                <td>🇨🇲 Yaoundé</td>
+                <td><span class="status-pill pill-paid">● Paid</span></td>
+                <td><button style="font-size:10px;padding:5px 12px;border:1px solid var(--border-strong);border-radius:3px;background:white;cursor:pointer;font-weight:600;" onclick="markShipped(this)">Mark Shipped</button></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:11px;">#AFRO-1714</td>
+                <td style="font-size:12px;">21 Jun 2025</td>
+                <td>Michelle Brown</td>
+                <td>Zulu Collar Necklace</td>
+                <td style="font-family:'DM Mono',monospace;">₦28,000</td>
+                <td>🇺🇸 Houston</td>
+                <td><span class="status-pill pill-shipped">● Shipped</span></td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══════════ ADD PRODUCT TAB ═══════════ -->
+      <div id="tab-add_product" class="admin-tab" style="display:none;">
+        <h2 style="font-size:20px;font-weight:600;margin-bottom:24px;">Add New Product</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;">
+          <!-- Left: Image + Basic -->
+          <div>
+            <div class="upload-zone" id="uploadZone">
+              <div style="font-size:36px;margin-bottom:10px;">📸</div>
+              <p style="font-size:13px;font-weight:500;color:var(--ink-soft);">Drag & drop product images here</p>
+              <p style="font-size:11px;color:var(--ink-muted);margin-top:6px;">First photo is the cover</p>
+              <input type="file" multiple accept="image/*" style="display:none;" id="fileInput">
+            </div>
+            <div style="margin-top:24px;">
+              <div style="margin-bottom:16px;">
+                <label class="form-lbl">Product Name</label>
+                <input class="form-ctrl" type="text" id="prodName" placeholder="e.g. Tribal Geometric Maxi Bubu">
+              </div>
+              <div style="margin-bottom:16px;">
+                <label class="form-lbl">Category</label>
+                <select class="form-ctrl" id="prodCategory">
+                  <option value="bubus">Bubu Dress</option>
+                  <option value="fabrics">Ankara Fabric</option>
+                  <option value="accessories">Accessories</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-lbl">Description</label>
+                <textarea class="form-ctrl" id="prodDesc" rows="4" placeholder="Describe the product..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Pricing + Settings -->
+          <div>
+            <label class="form-lbl">Pricing</label>
+            <div class="price-tier-grid" style="margin-bottom:20px;">
+              <div class="price-tier">
+                <div class="tier-lbl">Retail ₦</div>
+                <input class="tier-inp" type="number" id="priceRetail" placeholder="35000" oninput="calcUSD()">
+                <div class="tier-cur">NGN — base price</div>
+              </div>
+              <div class="price-tier">
+                <div class="tier-lbl">Wholesale ₦</div>
+                <input class="tier-inp" type="number" id="priceWholesale" placeholder="28000">
+                <div class="tier-cur">NGN — bulk buyers</div>
+              </div>
+              <div class="price-tier">
+                <div class="tier-lbl">Diaspora $</div>
+                <input class="tier-inp" type="number" id="priceUSD" placeholder="23">
+                <div class="tier-cur">USD — auto-calculated</div>
+              </div>
+            </div>
+            <p style="font-size:10px;color:var(--ink-muted);margin-bottom:24px;font-style:italic;">USD, GBP, FCFA, GHS auto-convert from NGN retail price</p>
+
+            <div style="background:var(--surface);border-radius:6px;padding:14px 16px;margin-bottom:24px;">
+              <p style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);letter-spacing:0.1em;margin-bottom:8px;">EXCHANGE RATES (READ-ONLY)</p>
+              <div style="display:flex;gap:16px;flex-wrap:wrap;">
+                <span style="font-family:'DM Mono',monospace;font-size:11px;">USD: ₦1,550</span>
+                <span style="font-family:'DM Mono',monospace;font-size:11px;">GBP: ₦1,950</span>
+                <span style="font-family:'DM Mono',monospace;font-size:11px;">FCFA: ×2.6</span>
+                <span style="font-family:'DM Mono',monospace;font-size:11px;">GHS: ₦10.3</span>
+              </div>
+            </div>
+
+            <label class="form-lbl" style="margin-bottom:14px;">Settings</label>
+            <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:32px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">Available to Buy</span>
+                <div class="toggle-switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">Wholesale Available</span>
+                <div class="toggle-switch" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">Feature on Homepage</span>
+                <div class="toggle-switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">Made to Order</span>
+                <div class="toggle-switch" onclick="this.classList.toggle('on')"></div>
+              </div>
+            </div>
+
+            <button onclick="publishProduct()" style="width:100%;background:var(--green-cta);color:white;padding:16px;border:none;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">
+              ✓ Publish Product
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════ PRODUCTS TAB ═══════════ -->
+      <div id="tab-products" class="admin-tab" style="display:none;">
+        <h2 style="font-size:20px;font-weight:600;margin-bottom:24px;">All Products</h2>
+        <div class="panel">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>NGN Price</th>
+                <th>USD Price</th>
+                <th>Stock</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══════════ PRICING TAB ═══════════ -->
+      <div id="tab-pricing" class="admin-tab" style="display:none;">
+        <h2 style="font-size:20px;font-weight:600;margin-bottom:24px;">Exchange Rates & Pricing</h2>
+        <p style="font-size:13px;color:var(--ink-muted);margin-bottom:28px;">Adjust these rates to control pricing across all currencies. All product prices are calculated from the NGN base.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:32px;">
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:24px;">
+            <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);letter-spacing:0.1em;margin-bottom:8px;">USD RATE</div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:14px;color:var(--ink-muted);">₦</span>
+              <input type="number" value="1550" style="font-family:'DM Mono',monospace;font-size:28px;font-weight:500;border:none;outline:none;width:100%;color:var(--ink);">
+            </div>
+            <div style="font-size:11px;color:var(--ink-muted);margin-top:6px;">per $1</div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted);margin-top:10px;">Last updated: 20 Jun 2025</div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:24px;">
+            <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);letter-spacing:0.1em;margin-bottom:8px;">GBP RATE</div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:14px;color:var(--ink-muted);">₦</span>
+              <input type="number" value="1950" style="font-family:'DM Mono',monospace;font-size:28px;font-weight:500;border:none;outline:none;width:100%;color:var(--ink);">
+            </div>
+            <div style="font-size:11px;color:var(--ink-muted);margin-top:6px;">per £1</div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted);margin-top:10px;">Last updated: 20 Jun 2025</div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:24px;">
+            <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);letter-spacing:0.1em;margin-bottom:8px;">FCFA RATE</div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <input type="number" value="2.6" step="0.1" style="font-family:'DM Mono',monospace;font-size:28px;font-weight:500;border:none;outline:none;width:100%;color:var(--ink);">
+            </div>
+            <div style="font-size:11px;color:var(--ink-muted);margin-top:6px;">FCFA per ₦1</div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted);margin-top:10px;">Last updated: 20 Jun 2025</div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:24px;">
+            <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);letter-spacing:0.1em;margin-bottom:8px;">GHS RATE</div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <input type="number" value="103" style="font-family:'DM Mono',monospace;font-size:28px;font-weight:500;border:none;outline:none;width:100%;color:var(--ink);">
+            </div>
+            <div style="font-size:11px;color:var(--ink-muted);margin-top:6px;">GHS per ₦1,000</div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted);margin-top:10px;">Last updated: 20 Jun 2025</div>
+          </div>
+        </div>
+
+        <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:24px;margin-bottom:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:13px;font-weight:600;margin-bottom:4px;">Diaspora Markup</div>
+              <div style="font-size:11px;color:var(--ink-muted);">Extra percentage added to USD/GBP prices</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <input type="number" value="10" style="font-family:'DM Mono',monospace;font-size:22px;font-weight:500;border:none;outline:none;width:60px;text-align:right;color:var(--ink);">
+              <span style="font-family:'DM Mono',monospace;font-size:16px;color:var(--ink-muted);">%</span>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="saveRates()" class="btn-primary" style="width:100%;justify-content:center;">Save Rates — Update All Prices</button>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const PRODUCTS = [
+  { id:1, name:'Tribal Geometric Maxi Bubu', cat:'Bubu Dress', img:'/images/dresses/tribal-geometric-maxi.jpg', price:35000, stock:true },
+  { id:2, name:'Red Teal Tribal Fringe Maxi', cat:'Bubu Dress', img:'/images/dresses/red-teal-fringe-maxi.jpg', price:38000, stock:true },
+  { id:3, name:'Royal Blue & Mustard Grid', cat:'Bubu Dress', img:'/images/dresses/royal-blue-mustard-grid.jpg', price:32000, stock:true },
+  { id:4, name:'Olive Gold Stripe Maxi', cat:'Bubu Dress', img:'/images/dresses/olive-gold-stripe-maxi.jpg', price:36000, stock:true },
+  { id:5, name:'Mudcloth Bogolan Bubu', cat:'Bubu Dress', img:'/images/dresses/mudcloth-brown-bubu.jpg', price:30000, stock:true },
+  { id:6, name:'Forest Green Short Bubu', cat:'Bubu Dress', img:'/images/dresses/forest-green-short-bubu.jpg', price:27000, stock:true },
+  { id:7, name:'Mustard Mixed Print Maxi', cat:'Bubu Dress', img:'/images/dresses/mustard-mixed-print-maxi.jpg', price:34000, stock:true },
+  { id:8, name:'Blue Mustard Grid Maxi', cat:'Bubu Dress', img:'/images/dresses/blue-mustard-grid-2.jpg', price:32000, stock:true },
+  { id:9, name:'Ocean Wave Batik', cat:'Fabric', img:'/images/fabrics/wave-batik.jpg', price:25000, stock:true },
+  { id:10, name:'Adinkra Symbol Batik', cat:'Fabric', img:'/images/fabrics/adinkra-symbol-batik.jpg', price:25000, stock:true },
+  { id:11, name:'Spiral Adinkra Batik', cat:'Fabric', img:'/images/fabrics/spiral-adinkra-batik.jpg', price:25000, stock:true },
+  { id:12, name:'Galaxy Night Batik', cat:'Fabric', img:'/images/fabrics/galaxy-batik.jpg', price:25000, stock:true },
+  { id:13, name:'Mandala Fire Batik', cat:'Fabric', img:'/images/fabrics/mandala-fire-batik.jpg', price:27000, stock:true },
+  { id:14, name:'Emerald Diamond Batik', cat:'Fabric', img:'/images/fabrics/emerald-diamond-batik.jpg', price:24000, stock:true },
+  { id:15, name:'Harvest Splatter Batik', cat:'Fabric', img:'/images/fabrics/harvest-splatter-batik.jpg', price:23000, stock:true },
+  { id:16, name:'Teal Rust Crackle Batik', cat:'Fabric', img:'/images/fabrics/teal-rust-crackle-batik.jpg', price:24000, stock:true },
+  { id:17, name:'Ankara Tote Bag', cat:'Accessories', img:'/images/accessories/ankara-tote-hat.jpg', price:15000, stock:true },
+  { id:18, name:'Zulu Beaded Collar Necklace', cat:'Accessories', img:'/images/accessories/zulu-collar-necklace.jpg', price:28000, stock:true },
+  { id:19, name:'Beaded Leather Sandals', cat:'Accessories', img:'/images/accessories/beaded-sandals.jpg', price:18000, stock:true },
+  { id:20, name:'Zulu Fringe Necklace', cat:'Accessories', img:'/images/accessories/zulu-fringe-necklaces.jpg', price:22000, stock:true },
+  { id:21, name:'Beaded Watch Cuff', cat:'Accessories', img:'/images/accessories/beaded-watch-cuff.jpg', price:20000, stock:true },
+  { id:22, name:'Full Beaded Set + Clutch', cat:'Accessories', img:'/images/accessories/beaded-jewellery-set.jpg', price:55000, stock:true },
+];
+
+// ── TAB SWITCHING ─────────────────────────────────────
+function showTab(id) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.style.display = 'none');
+  document.getElementById('tab-' + id).style.display = 'block';
+  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+  event.target.classList.add('active');
+  if (id === 'products') renderProductsTable();
+}
+
+// ── PRODUCTS TABLE ────────────────────────────────────
+function renderProductsTable() {
+  const tbody = document.getElementById('productsTableBody');
+  tbody.innerHTML = PRODUCTS.map(p => `
+    <tr>
+      <td><div style="width:44px;height:56px;border-radius:4px;overflow:hidden;background:var(--surface);"><img src="${p.img}" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top;"></div></td>
+      <td style="font-size:13px;font-weight:500;">${p.name}</td>
+      <td style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;">${p.cat}</td>
+      <td style="font-family:'DM Mono',monospace;">₦${p.price.toLocaleString()}</td>
+      <td style="font-family:'DM Mono',monospace;">$${Math.round(p.price/1550)}</td>
+      <td><span style="font-size:10px;font-weight:600;color:${p.stock ? 'var(--green-cta)' : '#C0392B'};">${p.stock ? 'In Stock' : 'Out'}</span></td>
+      <td><button style="font-size:10px;padding:5px 12px;border:1px solid var(--border-strong);border-radius:3px;background:white;cursor:pointer;">Edit</button></td>
+    </tr>
+  `).join('');
+}
+
+// ── MARK SHIPPED ──────────────────────────────────────
+function markShipped(btn) {
+  const row = btn.closest('tr');
+  const pill = row.querySelector('.status-pill');
+  pill.className = 'status-pill pill-shipped';
+  pill.textContent = '● Shipped';
+  btn.textContent = '✓ Done';
+  btn.disabled = true;
+  btn.style.opacity = '0.5';
+  showToast('✓ Order marked as shipped');
+}
+
+// ── PUBLISH PRODUCT ───────────────────────────────────
+function publishProduct() {
+  const name = document.getElementById('prodName').value;
+  if (!name) { showToast('Please enter a product name'); return; }
+  showToast('✓ Product published to your store!');
+  document.getElementById('prodName').value = '';
+  document.getElementById('prodDesc').value = '';
+  document.getElementById('priceRetail').value = '';
+  document.getElementById('priceWholesale').value = '';
+  document.getElementById('priceUSD').value = '';
+}
+
+// ── CALC USD ──────────────────────────────────────────
+function calcUSD() {
+  const ngn = parseInt(document.getElementById('priceRetail').value) || 0;
+  document.getElementById('priceUSD').value = Math.round(ngn / 1550);
+}
+
+// ── SAVE RATES ────────────────────────────────────────
+function saveRates() {
+  showToast('✓ Rates saved — all product prices updated sitewide');
+}
+
+// ── UPLOAD ZONE ───────────────────────────────────────
+document.getElementById('uploadZone').addEventListener('click', () => {
+  document.getElementById('fileInput').click();
+});
+
+// ── TOAST ─────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+</script>
+
+</body>
+</html>

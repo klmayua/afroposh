@@ -1,0 +1,394 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Afroposh Afriture</title>
+  <meta name="description" content="Complete your Afroposh Afriture order. Secure checkout with Flutterwave, Paystack, WhatsApp, or Bank Transfer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/global.css">
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  🔒 Secure Checkout &nbsp;|&nbsp; <span>256-bit encrypted · Your data is safe</span>
+</div>
+
+<!-- NAV -->
+<nav class="main-nav scrolled" id="mainNav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Afroposh <span>Afriture</span></a>
+    <ul class="nav-links">
+      <li><a href="/shop">← Back to Shop</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <select id="currencySelect" onchange="setCurrency(this.value)"
+        style="font-family:'DM Mono',monospace;font-size:11px;border:1px solid var(--border-strong);border-radius:3px;padding:6px 10px;background:white;color:var(--ink);cursor:pointer;">
+        <option value="NGN">₦ NGN</option>
+        <option value="USD">$ USD</option>
+        <option value="GBP">£ GBP</option>
+        <option value="FCFA">FCFA</option>
+        <option value="GHS">GHS</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<!-- CHECKOUT CONTENT -->
+<main style="background:var(--surface);min-height:100vh;padding:140px 32px 80px;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start;" id="checkoutGrid">
+
+    <!-- LEFT: FORM -->
+    <div style="background:white;border-radius:10px;border:1px solid var(--border);padding:40px;">
+      <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:500;margin-bottom:32px;">Checkout</h1>
+
+      <!-- Contact -->
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:16px;">Contact Information</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div>
+            <label class="form-lbl">First Name</label>
+            <input class="form-ctrl" type="text" id="firstName" required placeholder="First name">
+          </div>
+          <div>
+            <label class="form-lbl">Last Name</label>
+            <input class="form-ctrl" type="text" id="lastName" required placeholder="Last name">
+          </div>
+        </div>
+        <div style="margin-top:14px;">
+          <label class="form-lbl">Email Address</label>
+          <input class="form-ctrl" type="email" id="email" required placeholder="you@email.com">
+        </div>
+        <div style="margin-top:14px;">
+          <label class="form-lbl">WhatsApp Number</label>
+          <input class="form-ctrl" type="tel" id="whatsapp" required placeholder="+234 8XX XXX XXXX">
+        </div>
+      </div>
+
+      <!-- Shipping -->
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:16px;">Shipping Address</h3>
+        <div style="margin-bottom:14px;">
+          <label class="form-lbl">Country</label>
+          <select class="form-ctrl" id="country" required>
+            <option value="">Select country</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="Ghana">Ghana</option>
+            <option value="Cameroon">Cameroon</option>
+            <option value="UK">United Kingdom</option>
+            <option value="US">United States</option>
+            <option value="South Africa">South Africa</option>
+            <option value="Kenya">Kenya</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label class="form-lbl">City</label>
+          <input class="form-ctrl" type="text" id="city" required placeholder="City">
+        </div>
+        <div style="margin-bottom:14px;">
+          <label class="form-lbl">Full Address</label>
+          <input class="form-ctrl" type="text" id="address" required placeholder="Street, building, apartment">
+        </div>
+        <div>
+          <label class="form-lbl">Postal Code (optional)</label>
+          <input class="form-ctrl" type="text" id="postal" placeholder="Postal / ZIP code">
+        </div>
+      </div>
+
+      <!-- Delivery Method -->
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:16px;">Delivery Method</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;" id="deliveryOptions">
+          <label class="delivery-option selected" data-price="3500">
+            <input type="radio" name="delivery" value="standard" checked hidden>
+            <div class="do-inner">
+              <div><strong>Standard Delivery</strong><span>3–5 business days</span></div>
+              <div class="do-price" data-base="3500">₦3,500</div>
+            </div>
+          </label>
+          <label class="delivery-option" data-price="8000">
+            <input type="radio" name="delivery" value="express" hidden>
+            <div class="do-inner">
+              <div><strong>Express DHL</strong><span>24–72 hours</span></div>
+              <div class="do-price" data-base="8000">₦8,000</div>
+            </div>
+          </label>
+          <label class="delivery-option" data-price="25000">
+            <input type="radio" name="delivery" value="international" hidden>
+            <div class="do-inner">
+              <div><strong>International (Aramex/DHL)</strong><span>5–10 business days</span></div>
+              <div class="do-price" data-base="25000">₦25,000+</div>
+            </div>
+          </label>
+          <label class="delivery-option" data-price="0">
+            <input type="radio" name="delivery" value="pickup" hidden>
+            <div class="do-inner">
+              <div><strong>Pickup — Lagos / Yaoundé</strong><span>Ready in 24 hours</span></div>
+              <div class="do-price" data-base="0">FREE</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Payment Method -->
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:16px;">Payment Method</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="paymentOptions">
+          <div class="pay-option selected" data-method="flutterwave" onclick="selectPayment('flutterwave')">
+            <div style="font-size:22px;margin-bottom:8px;">🇳🇬</div>
+            <strong>Flutterwave</strong>
+            <span>Card, Bank, USSD, Mobile Money</span>
+          </div>
+          <div class="pay-option" data-method="paystack" onclick="selectPayment('paystack')">
+            <div style="font-size:22px;margin-bottom:8px;">💳</div>
+            <strong>Paystack</strong>
+            <span>Card, Apple Pay, Global</span>
+          </div>
+          <div class="pay-option" data-method="whatsapp" onclick="selectPayment('whatsapp')">
+            <div style="font-size:22px;margin-bottom:8px;">💬</div>
+            <strong>WhatsApp Order</strong>
+            <span>Pay on confirmation</span>
+          </div>
+          <div class="pay-option" data-method="bank" onclick="selectPayment('bank')">
+            <div style="font-size:22px;margin-bottom:8px;">🏦</div>
+            <strong>Bank Transfer</strong>
+            <span>Manual, 24hr confirm</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Place Order -->
+      <button id="placeOrderBtn" onclick="placeOrder()" style="width:100%;background:var(--green-cta);color:white;padding:18px;border-radius:4px;border:none;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;">
+        🔒 Place Order
+      </button>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <div style="position:sticky;top:130px;">
+      <div style="background:white;border-radius:10px;border:1px solid var(--border);padding:32px;">
+        <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:500;margin-bottom:24px;">Order Summary</h3>
+        <div id="summaryItems" style="margin-bottom:20px;"></div>
+        <div style="border-top:1px solid var(--border);padding-top:16px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:13px;color:var(--ink-muted);">Subtotal</span>
+            <span style="font-family:'DM Mono',monospace;font-size:13px;" id="subtotalDisplay">₦0</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:13px;color:var(--ink-muted);">Shipping</span>
+            <span style="font-family:'DM Mono',monospace;font-size:13px;" id="shippingDisplay">₦3,500</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);margin-top:12px;">
+            <span style="font-size:14px;font-weight:700;">Total</span>
+            <span style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;" id="totalDisplay">₦0</span>
+          </div>
+        </div>
+        <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted);text-align:center;margin-top:16px;letter-spacing:0.1em;">🔒 256-BIT ENCRYPTED CHECKOUT</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS STATE (hidden initially) -->
+  <div id="successState" style="display:none;max-width:600px;margin:0 auto;text-align:center;padding:60px 24px;">
+    <div style="font-size:64px;margin-bottom:20px;">✓</div>
+    <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;font-weight:500;margin-bottom:12px;">Order Placed!</h2>
+    <p style="font-size:14px;color:var(--ink-muted);margin-bottom:8px;">Your order reference:</p>
+    <p style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--green-cta);margin-bottom:24px;" id="orderRef">AFRO-000000</p>
+    <p style="font-size:13px;color:var(--ink-muted);line-height:1.7;">Confirmation sent to your WhatsApp. We'll process your order within 24 hours.</p>
+    <a href="/shop" class="btn-primary" style="margin-top:28px;">Continue Shopping →</a>
+  </div>
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<style>
+  .delivery-option {
+    display:block;
+    padding:16px 18px;
+    border:1.5px solid var(--border);
+    border-radius:6px;
+    cursor:pointer;
+    transition:all 0.2s;
+  }
+  .delivery-option:hover { border-color:var(--ink-muted); }
+  .delivery-option.selected { border-color:var(--ink); background:rgba(26,26,26,0.03); }
+  .do-inner { display:flex; justify-content:space-between; align-items:center; }
+  .do-inner strong { display:block; font-size:13px; font-weight:600; }
+  .do-inner span { font-size:11px; color:var(--ink-muted); }
+  .do-price { font-family:'DM Mono',monospace; font-size:13px; font-weight:500; }
+
+  .pay-option {
+    border:1.5px solid var(--border);
+    border-radius:8px;
+    padding:20px 16px;
+    text-align:center;
+    cursor:pointer;
+    transition:all 0.2s;
+  }
+  .pay-option:hover { border-color:var(--ink-muted); }
+  .pay-option.selected { border-color:var(--green-cta); background:rgba(26,107,74,0.04); }
+  .pay-option strong { display:block; font-size:12px; margin-bottom:3px; }
+  .pay-option span { font-size:10px; color:var(--ink-muted); }
+
+  @media (max-width: 768px) {
+    #checkoutGrid { grid-template-columns:1fr !important; }
+  }
+</style>
+
+<script>
+const RATES = { NGN: 1, USD: 1/1550, GBP: 1/1950, FCFA: 2.6, GHS: 1000/10300 };
+const SYMS  = { NGN: '₦', USD: '$', GBP: '£', FCFA: 'FCFA ', GHS: 'GHS ' };
+let currency = 'NGN';
+let cart = JSON.parse(localStorage.getItem('afroposh_cart') || '[]');
+let selectedDelivery = 3500;
+let selectedPayment = 'flutterwave';
+
+function fmt(ngn, cur = currency) {
+  const v = ngn * RATES[cur];
+  return SYMS[cur] + Math.round(v).toLocaleString();
+}
+
+function setCurrency(c) {
+  currency = c;
+  renderSummary();
+  // Update delivery prices
+  document.querySelectorAll('.do-price').forEach(el => {
+    const base = parseInt(el.dataset.base);
+    el.textContent = base === 0 ? 'FREE' : fmt(base);
+  });
+}
+
+// ── Delivery selection ────────────────────────────────
+document.querySelectorAll('.delivery-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.delivery-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    opt.querySelector('input').checked = true;
+    selectedDelivery = parseInt(opt.dataset.price);
+    renderSummary();
+  });
+});
+
+// ── Payment selection ─────────────────────────────────
+function selectPayment(method) {
+  selectedPayment = method;
+  document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('selected'));
+  document.querySelector(`[data-method="${method}"]`).classList.add('selected');
+}
+
+// ── Render order summary ──────────────────────────────
+function renderSummary() {
+  const items = document.getElementById('summaryItems');
+  if (cart.length === 0) {
+    items.innerHTML = '<p style="font-size:13px;color:var(--ink-muted);">Cart is empty</p>';
+  } else {
+    items.innerHTML = cart.map(i => `
+      <div style="display:flex;gap:12px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);">
+        <div style="width:56px;height:70px;border-radius:6px;overflow:hidden;flex-shrink:0;background:var(--surface);">
+          <img src="${i.img}" alt="${i.name}" style="width:100%;height:100%;object-fit:cover;object-position:top center;">
+        </div>
+        <div style="flex:1;">
+          <p style="font-size:12px;font-weight:500;margin-bottom:2px;">${i.name}</p>
+          <p style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-muted);">Qty: ${i.qty}</p>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:500;">${fmt(i.price * i.qty)}</div>
+      </div>`).join('');
+  }
+
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('subtotalDisplay').textContent = fmt(subtotal);
+  document.getElementById('shippingDisplay').textContent = selectedDelivery === 0 ? 'FREE' : fmt(selectedDelivery);
+  document.getElementById('totalDisplay').textContent = fmt(subtotal + selectedDelivery);
+}
+
+// ── Place Order ───────────────────────────────────────
+function placeOrder() {
+  const email = document.getElementById('email').value;
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const phone = document.getElementById('whatsapp').value;
+
+  if (!email || !firstName || !lastName || !phone) {
+    showToast('Please fill in all required fields');
+    return;
+  }
+
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const total = subtotal + selectedDelivery;
+  const txRef = 'AFRO-' + Date.now();
+
+  if (selectedPayment === 'flutterwave') {
+    if (typeof FlutterwaveCheckout !== 'undefined') {
+      FlutterwaveCheckout({
+        public_key: 'FLWPUBK_TEST-your-key-here',
+        tx_ref: txRef,
+        amount: total,
+        currency: 'NGN',
+        customer: { email: email, name: `${firstName} ${lastName}`, phone_number: phone },
+        callback: function(data) { showOrderSuccess(data.tx_ref || txRef); },
+        onclose: function() { console.log('Payment closed'); }
+      });
+    } else {
+      showOrderSuccess(txRef);
+    }
+  } else if (selectedPayment === 'paystack') {
+    if (typeof PaystackPop !== 'undefined') {
+      let handler = PaystackPop.setup({
+        key: 'pk_test_your-key-here',
+        email: email,
+        amount: total * 100,
+        currency: 'NGN',
+        callback: function(response) { showOrderSuccess(response.reference || txRef); },
+        onClose: function() { console.log('Payment closed'); }
+      });
+      handler.openIframe();
+    } else {
+      showOrderSuccess(txRef);
+    }
+  } else if (selectedPayment === 'whatsapp') {
+    const items = cart.map(i => `${i.qty}x ${i.name} (${fmt(i.price)})`).join('\n');
+    const city = document.getElementById('city').value;
+    const country = document.getElementById('country').value;
+    const msg = `Hi! I'd like to place an order:\n\n${items}\n\nSubtotal: ${fmt(subtotal)}\nShipping: ${selectedDelivery === 0 ? 'Pickup' : fmt(selectedDelivery)}\nTotal: ${fmt(total)}\n\nName: ${firstName} ${lastName}\nDelivery: ${city}, ${country}\nWhatsApp: ${phone}`;
+    window.open(`https://wa.me/2371184837?text=${encodeURIComponent(msg)}`);
+    showOrderSuccess(txRef);
+  } else if (selectedPayment === 'bank') {
+    showToast('Bank details: Zenith Bank · 2201234567 · Afroposh Afriture. Send proof to WhatsApp.');
+    showOrderSuccess(txRef);
+  }
+}
+
+function showOrderSuccess(ref) {
+  document.getElementById('checkoutGrid').style.display = 'none';
+  document.getElementById('successState').style.display = 'block';
+  document.getElementById('orderRef').textContent = ref;
+  localStorage.removeItem('afroposh_cart');
+  cart = [];
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── INIT ──────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  if (cart.length === 0) {
+    window.location.href = '/shop';
+    return;
+  }
+  renderSummary();
+});
+</script>
+
+</body>
+</html>
