@@ -7,6 +7,7 @@ import '../styles/global.css';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login — Afroposh Afriture</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -213,6 +214,9 @@ function fillDemo(type) {
     document.getElementById('loginPassword').value = 'admin2026';
     setRole('admin');
   }
+  // Clear any stale error from a prior attempt
+  const errEl = document.getElementById('loginError');
+  if (errEl) errEl.style.display = 'none';
   // Pulse the Sign In button so user knows to click it
   const btn = document.querySelector('#loginForm button[type="submit"]');
   if (btn) {
@@ -220,9 +224,10 @@ function fillDemo(type) {
     btn.style.transform = 'scale(1.02)';
     btn.style.boxShadow = '0 8px 24px rgba(201,146,42,0.45)';
     setTimeout(() => {
+      btn.style.background = '';
       btn.style.transform = '';
       btn.style.boxShadow = '';
-    }, 600);
+    }, 700);
   }
 }
 
@@ -231,6 +236,7 @@ function handleLogin(e) {
   const email = document.getElementById('loginEmail').value.trim().toLowerCase();
   const password = document.getElementById('loginPassword').value;
   const errEl = document.getElementById('loginError');
+  errEl.style.display = 'none';
 
   // Check demo users
   let user = DEMO_USERS.find(u => u.email === email && u.password === password);
@@ -248,14 +254,14 @@ function handleLogin(e) {
     return;
   }
 
-  // Validate role
+  // Role check: admin tab requires admin account
   if (selectedRole === 'admin' && user.role !== 'admin') {
     errEl.style.display = 'block';
     errEl.textContent = 'This account does not have admin privileges.';
     return;
   }
 
-  // Login success
+  // Login success — always redirect based on the user's actual role
   const session = { ...user, password: undefined, loggedInAt: new Date().toISOString() };
   delete session.password;
   localStorage.setItem('afroposh_user', JSON.stringify(session));
