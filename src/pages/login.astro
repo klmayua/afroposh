@@ -44,12 +44,33 @@ import '../styles/global.css';
 
 <!-- LOGIN PAGE CONTENT -->
 <main style="min-height:100vh;padding-top:120px;display:grid;grid-template-columns:1fr 1fr;background:var(--surface);">
-  <!-- LEFT: Hero Visual -->
-  <div style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--ink);">
-    <img src="/images/dresses/afroposh_bubu4.jpg" alt="Afroposh Fashion" style="width:100%;height:100%;object-fit:cover;opacity:0.6;position:absolute;inset:0;">
-    <div style="position:relative;z-index:1;text-align:center;padding:40px;">
-      <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(32px,4vw,48px);color:white;font-weight:500;line-height:1.1;margin-bottom:16px;">Your African<br><em style="color:var(--gold-light);">Fashion Journey</em><br>Starts Here</h2>
-      <p style="color:rgba(255,255,255,0.6);font-size:14px;max-width:300px;margin:0 auto;">Premium Bubu dresses, Ankara fabrics, and artisan accessories delivered worldwide.</p>
+  <!-- LEFT: Hero Visual — rotating product images, zoomed out to show full outfits -->
+  <div style="position:relative;overflow:hidden;background:#0a0a0a;" id="loginHeroPanel">
+    <!-- Slides -->
+    <div class="lp-slide lp-active" style="position:absolute;inset:0;transition:opacity 1.4s ease;">
+      <img src="/images/dresses/afroposh_bubu4.jpg"  alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;transform:scale(1.0);">
+    </div>
+    <div class="lp-slide" style="position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;">
+      <img src="/images/dresses/afroposh_bubu8.jpg"  alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 10%;transform:scale(1.0);">
+    </div>
+    <div class="lp-slide" style="position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;">
+      <img src="/images/dresses/afroposh_bubu3.jpg"  alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 8%;transform:scale(1.0);">
+    </div>
+    <div class="lp-slide" style="position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;">
+      <img src="/images/dresses/afroposh_bubu2.jpg"  alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 5%;transform:scale(1.0);">
+    </div>
+    <!-- Dark gradient overlay -->
+    <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.2) 100%);z-index:2;"></div>
+    <!-- Content over image -->
+    <div style="position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;padding:40px;">
+      <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:12px;">Afroposh Afriture</p>
+      <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,3.5vw,44px);color:white;font-weight:500;line-height:1.1;margin-bottom:14px;">Your African<br><em style="color:var(--gold-light);">Fashion Journey</em><br>Starts Here</h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:13px;max-width:320px;line-height:1.6;">Premium Bubu dresses, Ankara fabrics, and artisan accessories delivered worldwide.</p>
+      <div style="display:flex;gap:6px;margin-top:20px;">
+        <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:rgba(255,255,255,0.45);padding:4px 10px;border:1px solid rgba(255,255,255,0.15);border-radius:3px;">Lagos</span>
+        <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:rgba(255,255,255,0.45);padding:4px 10px;border:1px solid rgba(255,255,255,0.15);border-radius:3px;">Accra</span>
+        <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:rgba(255,255,255,0.45);padding:4px 10px;border:1px solid rgba(255,255,255,0.15);border-radius:3px;">Yaoundé</span>
+      </div>
     </div>
   </div>
 
@@ -293,8 +314,30 @@ document.addEventListener('DOMContentLoaded', () => {
   if (user) {
     window.location.href = user.role === 'admin' ? '/admin' : '/shop';
   }
+
+  // Login page hero panel slideshow
+  const lpSlides = document.querySelectorAll('.lp-slide');
+  if (lpSlides.length) {
+    let lpCurrent = 0;
+    setInterval(() => {
+      lpSlides[lpCurrent].style.opacity = '0';
+      lpSlides[lpCurrent].classList.remove('lp-active');
+      lpCurrent = (lpCurrent + 1) % lpSlides.length;
+      lpSlides[lpCurrent].style.opacity = '1';
+      lpSlides[lpCurrent].classList.add('lp-active');
+    }, 5000);
+  }
 });
 </script>
+
+<style>
+  /* Login page left panel fills full height */
+  #loginHeroPanel { min-height: calc(100vh - 120px); }
+  @media (max-width: 768px) {
+    main { grid-template-columns: 1fr !important; }
+    #loginHeroPanel { display: none !important; }
+  }
+</style>
 
 </body>
 </html>
