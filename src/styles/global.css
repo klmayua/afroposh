@@ -174,11 +174,12 @@ body {
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.75);
   padding: 5px 14px;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
   border-radius: 999px;
   transition: all 0.2s;
+  background: rgba(255,255,255,0.08);
 }
 .hero-city-tag:hover {
   color: rgba(255,255,255,0.8);
@@ -615,11 +616,9 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   padding: 18px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 24px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
 }
 .trust-item {
   display: flex;
@@ -839,19 +838,27 @@ body {
   margin-top: 2px;
 }
 .add-cart-btn {
-  width: 36px;
   height: 36px;
+  padding: 0 14px;
   background: var(--ink);
-  border-radius: 50%;
+  border-radius: 20px;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   color: white;
   font-size: 20px;
   cursor: pointer;
   transition: background 0.2s;
   flex-shrink: 0;
+}
+.add-cart-btn span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
 }
 .add-cart-btn:hover { background: var(--gold); }
 
@@ -1481,7 +1488,17 @@ footer {
   .footer-grid { grid-template-columns: 1fr; }
   .admin-sidebar { display: none; }
   .price-tier-grid { grid-template-columns: 1fr; }
-  .hero-title { font-size: clamp(42px, 12vw, 72px); }
+  .hero-title { font-size: clamp(36px, 10vw, 60px); }
+  .hero-content { padding: 0 20px; justify-content: flex-end; padding-bottom: 60px; }
+  .hero-sub { font-size: 13px; margin-bottom: 20px; }
+  .hero-cities { margin-bottom: 24px; }
+  .hero-eyebrow { font-size: 9px; margin-bottom: 16px; }
+  .hero-preview-cards { display: none; }
+  .trust-inner { grid-template-columns: 1fr 1fr; padding: 16px; gap: 12px; }
+  .trust-item { gap: 8px; }
+  .trust-icon-wrap { width: 32px; height: 32px; font-size: 14px; }
+  .trust-text strong { font-size: 11px; }
+  .trust-text span { font-size: 9px; }
   .mobile-bottom-nav { display: block; }
   .chat-fab-desktop { display: none !important; }
   .back-to-top { bottom: 84px !important; }

@@ -91,23 +91,24 @@ import '../styles/global.css';
 
 <!-- MOBILE MORE MENU (polished slide-up) -->
 <div class="mobile-more-overlay" id="mobileMoreMenu">
-  <div style="width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;"></div>
+  <div style="width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 12px;"></div>
+  <p style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink);text-align:center;margin:0 0 16px;">Quick Actions</p>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-    <a href="/wholesale" style="padding:16px;background:var(--surface);border-radius:10px;text-decoration:none;color:var(--ink);font-size:12px;font-weight:500;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+    <a href="/wholesale" style="padding:18px 12px;background:var(--surface);border-radius:12px;text-decoration:none;color:var(--ink);font-size:11px;font-weight:600;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;letter-spacing:0.02em;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
       Wholesale
     </a>
-    <a href="https://wa.me/2371184837" target="_blank" style="padding:16px;background:#25D366;border-radius:10px;text-decoration:none;color:white;font-size:12px;font-weight:500;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    <a href="https://wa.me/2371184837" target="_blank" style="padding:18px 12px;background:#25D366;border-radius:12px;text-decoration:none;color:white;font-size:11px;font-weight:600;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;letter-spacing:0.02em;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
       Chat With Us
     </a>
-    <a href="/login" id="mobLoginBtn" style="padding:16px;background:var(--ink);border-radius:10px;text-decoration:none;color:white;font-size:12px;font-weight:500;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      Login
+    <a href="/login" id="mobLoginBtn" style="padding:18px 12px;background:var(--ink);border-radius:12px;text-decoration:none;color:white;font-size:11px;font-weight:600;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;letter-spacing:0.02em;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Login / Account
     </a>
-    <div style="padding:16px;background:var(--surface);border-radius:10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      <select id="mobCurrencySelect" onchange="setCurrency(this.value)" style="font-family:'DM Mono',monospace;font-size:11px;border:1px solid var(--border);border-radius:4px;padding:6px;background:white;color:var(--ink);cursor:pointer;width:100%;">
+    <div style="padding:18px 12px;background:var(--surface);border-radius:12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <select id="mobCurrencySelect" onchange="setCurrency(this.value)" style="font-family:'DM Mono',monospace;font-size:11px;border:1px solid var(--border);border-radius:4px;padding:6px 8px;background:white;color:var(--ink);cursor:pointer;width:100%;font-weight:500;">
         <option value="NGN">₦ NGN</option>
         <option value="USD">$ USD</option>
         <option value="GBP">£ GBP</option>
@@ -703,7 +704,7 @@ function buildProductCard(p) {
             <div class="product-price">${fmt(p.price)}</div>
             ${currency !== 'USD' ? `<div class="product-price-alt">≈ $${Math.round(p.price/1550)}</div>` : ''}
           </div>
-          <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})">${cartSvg}</button>
+          <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})">${cartSvg} <span>Add to Cart</span></button>
         </div>
       </div>
     </div>`;
@@ -729,7 +730,7 @@ function buildFabricCard(p) {
             <div class="fabric-price">${fmt(p.price)}</div>
             ${currency !== 'USD' ? `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-muted)">≈ $${Math.round(p.price/1550)}</div>` : ''}
           </div>
-          <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})">${cartSvg}</button>
+          <button class="add-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})">${cartSvg} <span>Add to Cart</span></button>
         </div>
       </div>
     </div>`;
