@@ -1562,6 +1562,8 @@ footer {
   /* Cookie banner must sit ABOVE the bottom nav, not over it */
   .cookie-banner { bottom: 72px; flex-wrap: wrap; padding: 12px 16px; gap: 10px; font-size: 12px; border-radius: 12px 12px 0 0; }
   .cookie-banner p { text-align: center; font-size: 11px; }
+  /* WhatsApp FAB is in the More menu on mobile — hide the float */
+  .chat-fab-desktop { display: none; }
 }
 
 /* ── FORM CONTROLS (Login/Register) ─────────────────── */
