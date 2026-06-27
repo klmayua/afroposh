@@ -1287,6 +1287,7 @@ footer {
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%) translateY(80px);
+  opacity: 0;
   background: var(--ink);
   color: white;
   padding: 14px 28px;
@@ -1294,12 +1295,12 @@ footer {
   font-size: 13px;
   font-weight: 500;
   z-index: 1000;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   white-space: nowrap;
   box-shadow: 0 8px 32px rgba(0,0,0,0.22);
   pointer-events: none;
 }
-.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
 /* ── ADMIN ───────────────────────────────────── */
 .admin-wrap { background: #F2F2F5; min-height: 100vh; }
