@@ -403,8 +403,15 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ── COOKIE CONSENT ───────────────────────────────────
-function acceptCookies() { localStorage.setItem('afroposh_cookies', 'accepted'); document.getElementById('cookieBanner').classList.remove('visible'); }
-function declineCookies() { localStorage.setItem('afroposh_cookies', 'declined'); document.getElementById('cookieBanner').classList.remove('visible'); }
+window.acceptCookies = function() { localStorage.setItem('afroposh_cookies', 'accepted'); document.getElementById('cookieBanner').classList.remove('visible'); };
+window.declineCookies = function() { localStorage.setItem('afroposh_cookies', 'declined'); document.getElementById('cookieBanner').classList.remove('visible'); };
+
+// ── Expose all onclick handlers to window ────────────
+window.toggleMobileMore = toggleMobileMore;
+window.toggleCart = toggleCart;
+window.setCurrency = setCurrency;
+window.updateCartDisplay = updateCartDisplay;
+window.showToast = showToast;
 
 document.addEventListener('DOMContentLoaded', () => {
   updateCartDisplay();

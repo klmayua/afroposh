@@ -1485,9 +1485,11 @@ footer {
   .mobile-bottom-nav { display: block; }
   .chat-fab-desktop { display: none !important; }
   .back-to-top { bottom: 84px !important; }
-  body { padding-top: 88px; padding-bottom: 72px; }
+  body { padding-bottom: 72px; }
   .premium-ticker { position: fixed; }
   .main-nav { position: fixed; }
+  .main-nav.transparent { background: transparent; }
+  .nav-logo { font-size: 20px; white-space: nowrap; }
 }
 
 /* ── FORM CONTROLS (Login/Register) ─────────────────── */

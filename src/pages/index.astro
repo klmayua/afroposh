@@ -880,14 +880,24 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ── COOKIE CONSENT ───────────────────────────────────
-function acceptCookies() {
+window.acceptCookies = function() {
   localStorage.setItem('afroposh_cookies', 'accepted');
   document.getElementById('cookieBanner').classList.remove('visible');
-}
-function declineCookies() {
+};
+window.declineCookies = function() {
   localStorage.setItem('afroposh_cookies', 'declined');
   document.getElementById('cookieBanner').classList.remove('visible');
-}
+};
+
+// ── Expose all onclick handlers to window ────────────
+window.toggleMobileMore = toggleMobileMore;
+window.toggleCart = toggleCart;
+window.toggleWishlistPanel = toggleWishlistPanel;
+window.setCurrency = setCurrency;
+window.addToCart = addToCart;
+window.removeFromCart = removeFromCart;
+window.toggleFav = toggleFav;
+window.showToast = showToast;
 
 // ── INIT ──────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
