@@ -175,16 +175,17 @@ body {
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
+  color: var(--gold);
   padding: 5px 14px;
-  border: 1px solid rgba(255,255,255,0.35);
+  border: 1px solid rgba(201,146,42,0.5);
   border-radius: 999px;
   transition: all 0.2s;
-  background: rgba(255,255,255,0.08);
+  background: rgba(201,146,42,0.1);
 }
 .hero-city-tag:hover {
-  color: rgba(255,255,255,0.8);
-  border-color: rgba(255,255,255,0.35);
+  color: var(--gold-light);
+  border-color: var(--gold);
+  background: rgba(201,146,42,0.18);
 }
 
 .hero-ctas {
@@ -1536,11 +1537,11 @@ footer {
   .admin-sidebar { display: none; }
   .price-tier-grid { grid-template-columns: 1fr; }
   .hero-title { font-size: clamp(36px, 10vw, 60px); margin-bottom: 12px; }
-  /* Push content UP enough to clear bottom nav (72px) + breathing room (24px) */
-  .hero-content { padding: 0 20px calc(72px + 28px); justify-content: flex-end; }
+  /* Push content UP enough to clear bottom nav (72px) + reduced breathing room */
+  .hero-content { padding: 0 20px calc(72px + 14px); justify-content: flex-end; }
   .hero-section { height: calc(100vh - 36px); min-height: 580px; }
-  .hero-ctas { gap: 10px; flex-wrap: wrap; }
-  .hero-ctas .btn-primary, .hero-ctas .btn-outline-white { font-size: 11px; padding: 12px 20px; }
+  .hero-ctas { gap: 10px; flex-wrap: nowrap; }
+  .hero-ctas .btn-primary, .hero-ctas .btn-outline-white { font-size: 11px; padding: 11px 14px; flex: 1; text-align: center; justify-content: center; white-space: nowrap; }
   .cat-arrow { opacity: 1 !important; transform: translateY(0) !important; background: var(--gold) !important; border-color: var(--gold) !important; }
   /* Tighten vertical rhythm so the stack fits the visible viewport */
   .hero-sub { font-size: 12px; margin-bottom: 10px; max-width: 100%; }
