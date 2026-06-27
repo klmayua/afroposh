@@ -30,14 +30,14 @@ import '../styles/global.css';
 <!-- NAV -->
 <nav class="main-nav scrolled" id="mainNav">
   <div class="nav-inner">
-    <a href="/" class="nav-logo">Afroposh <span>Afriture</span></a>
     <ul class="nav-links">
       <li><a href="/shop?cat=bubus">Bubu Dresses</a></li>
       <li><a href="/shop?cat=fabrics">Fabrics</a></li>
       <li><a href="/shop?cat=accessories">Accessories</a></li>
       <li><a href="/wholesale">Wholesale</a></li>
     </ul>
-    <div style="display:flex;align-items:center;gap:12px;">
+    <a href="/" class="nav-logo">Afroposh <span>Afriture</span></a>
+    <div class="nav-ctas">
       <select id="currencySelect" onchange="setCurrency(this.value)"
         style="font-family:'DM Mono',monospace;font-size:11px;border:1px solid var(--border-strong);border-radius:3px;padding:6px 10px;background:white;color:var(--ink);cursor:pointer;letter-spacing:0.05em;">
         <option value="NGN">₦ NGN</option>

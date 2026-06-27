@@ -50,8 +50,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
-  transform: scale(1.08);
+  object-position: center 20%;
+  transform: scale(1.03);
   transition: transform 8s ease;
 }
 .hero-slide.active img {
@@ -411,19 +411,21 @@ body {
   margin: 0 auto;
   padding: 0 32px;
   height: 72px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: 32px;
+  gap: 24px;
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 600;
   letter-spacing: 0.02em;
   transition: color 0.3s;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
+  grid-column: 2;
 }
 .main-nav.transparent .nav-logo { color: white; }
 .main-nav.scrolled .nav-logo { color: var(--ink); }
@@ -432,11 +434,20 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 28px;
   list-style: none;
+  grid-column: 1;
+  justify-self: start;
+}
+.nav-ctas {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  grid-column: 3;
+  justify-self: end;
 }
 .nav-links a {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -458,6 +469,62 @@ body {
   transition: transform 0.25s ease;
 }
 .nav-links a:hover::after { transform: scaleX(1); }
+
+/* ── MOBILE BOTTOM NAV ─────────────────────────── */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: white;
+  border-top: 1px solid var(--border);
+  padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+.mobile-bottom-nav .mob-nav-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.mob-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  color: var(--ink-muted);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+}
+.mob-nav-item.active { color: var(--gold); }
+.mob-nav-item svg { width: 22px; height: 22px; }
+.mob-nav-badge {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  background: var(--gold);
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+}
 
 /* ── PREMIUM TICKER ─────────────────────────── */
 .premium-ticker {
@@ -781,8 +848,8 @@ body {
 /* ── FABRIC CARDS ────────────────────────────── */
 .fabric-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 24px;
 }
 .fabric-card {
   background: white;
@@ -798,14 +865,16 @@ body {
   transform: translateY(-3px);
 }
 .fabric-img-wrap {
-  aspect-ratio: 2/3;
+  aspect-ratio: 3/4;
   overflow: hidden;
   background: var(--surface);
+  position: relative;
 }
 .fabric-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
   transition: transform 0.5s;
 }
 .fabric-card:hover .fabric-img-wrap img { transform: scale(1.06); }
@@ -1395,11 +1464,17 @@ footer {
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
+  .nav-ctas { gap: 8px; }
+  .nav-inner { grid-template-columns: 1fr auto; height: 60px; padding: 0 16px; }
+  .nav-logo { grid-column: 1; font-size: 22px; text-align: left; }
+  .nav-ctas { grid-column: 2; }
   .cat-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .admin-sidebar { display: none; }
   .price-tier-grid { grid-template-columns: 1fr; }
   .hero-title { font-size: clamp(42px, 12vw, 72px); }
+  .mobile-bottom-nav { display: block; }
+  body { padding-bottom: 72px; }
 }
 
 /* ── FORM CONTROLS (Login/Register) ─────────────────── */
