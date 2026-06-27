@@ -214,25 +214,24 @@ function fillDemo(type) {
     document.getElementById('loginPassword').value = 'admin2026';
     setRole('admin');
   }
-  // Clear any stale error from a prior attempt
   const errEl = document.getElementById('loginError');
   if (errEl) errEl.style.display = 'none';
-  // Pulse the Sign In button so user knows to click it
+
+  // Flash the button, then auto-submit — no second click needed
   const btn = document.querySelector('#loginForm button[type="submit"]');
   if (btn) {
+    btn.textContent = 'Signing in…';
     btn.style.background = 'var(--gold)';
-    btn.style.transform = 'scale(1.02)';
-    btn.style.boxShadow = '0 8px 24px rgba(201,146,42,0.45)';
-    setTimeout(() => {
-      btn.style.background = '';
-      btn.style.transform = '';
-      btn.style.boxShadow = '';
-    }, 700);
+    btn.disabled = true;
   }
+  setTimeout(() => {
+    document.getElementById('loginForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+  }, 500);
 }
 
 function handleLogin(e) {
   e.preventDefault();
+  const btn = document.querySelector('#loginForm button[type="submit"]');
   const email = document.getElementById('loginEmail').value.trim().toLowerCase();
   const password = document.getElementById('loginPassword').value;
   const errEl = document.getElementById('loginError');
@@ -249,6 +248,7 @@ function handleLogin(e) {
   }
 
   if (!user) {
+    if (btn) { btn.textContent = 'Sign In →'; btn.style.background = ''; btn.disabled = false; }
     errEl.style.display = 'block';
     errEl.textContent = 'Invalid email or password. Try the demo credentials below.';
     return;
@@ -256,6 +256,7 @@ function handleLogin(e) {
 
   // Role check: admin tab requires admin account
   if (selectedRole === 'admin' && user.role !== 'admin') {
+    if (btn) { btn.textContent = 'Sign In →'; btn.style.background = ''; btn.disabled = false; }
     errEl.style.display = 'block';
     errEl.textContent = 'This account does not have admin privileges.';
     return;
