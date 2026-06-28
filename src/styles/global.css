@@ -1539,11 +1539,11 @@ footer {
   .price-tier-grid { grid-template-columns: 1fr; }
   /* +20% hero text sizes + shift content up ~25% of dead space above */
   .hero-title { font-size: clamp(43px, 12vw, 72px); margin-bottom: 12px; }
-  .hero-content { padding: 0 20px calc(72px + 68px); justify-content: flex-end; }
+  .hero-content { padding: 0 20px 32px; justify-content: flex-end; }
   .hero-section { height: calc(100vh - 36px); min-height: 580px; }
   .hero-ctas { gap: 10px; flex-wrap: nowrap; }
   .hero-ctas .btn-primary, .hero-ctas .btn-outline-white { font-size: 13px; padding: 13px 16px; flex: 1; text-align: center; justify-content: center; white-space: nowrap; }
-  .cat-arrow { opacity: 1 !important; transform: translateY(0) !important; background: var(--gold) !important; border-color: var(--gold) !important; }
+  .cat-arrow { opacity: 1 !important; transform: translateY(0) !important; background: var(--gold); color: white; padding: 8px 16px; border-radius: 4px; font-size: 12px; }
   .hero-sub { font-size: 14px; margin-bottom: 10px; max-width: 100%; }
   .hero-cities { margin-bottom: 12px; }
   .hero-eyebrow { font-size: 11px; margin-bottom: 10px; }
