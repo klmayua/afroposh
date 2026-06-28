@@ -1,8 +1,8 @@
 {
-  "name": "afroposh-afriture",
+  "name": "afroposh-afritude",
   "type": "module",
   "version": "1.0.0",
-  "description": "Premium African Fashion E-Commerce — Afroposh Afriture",
+  "description": "Premium African Fashion E-Commerce — Afroposh Afritude",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
