@@ -1,5 +1,5 @@
 // ============================================================
-// AFROPOSH AFRITURE — PRODUCT DATA
+// AFROPOSH AFRITUDE — PRODUCT DATA
 // All 22 real products. Images are in /public/images/
 // Prices in NGN (base). Currency conversion in currency.ts
 // ============================================================

@@ -1,5 +1,5 @@
 // ============================================================
-// AFROPOSH AFRITURE — CURRENCY ENGINE
+// AFROPOSH AFRITUDE — CURRENCY ENGINE
 // Base: NGN. Rates are manually controlled margins
 // (not live API — Joyce controls the margin)
 // ============================================================

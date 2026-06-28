@@ -6,9 +6,9 @@ import '../styles/global.css';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout — Afroposh Afriture</title>
+  <title>Checkout — Afroposh Afritude</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <meta name="description" content="Complete your Afroposh Afriture order. Secure checkout with Flutterwave, Paystack, WhatsApp, or Bank Transfer.">
+  <meta name="description" content="Complete your Afroposh Afritude order. Secure checkout with Flutterwave, Paystack, WhatsApp, or Bank Transfer.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://checkout.flutterwave.com/v3.js"></script>
@@ -24,7 +24,7 @@ import '../styles/global.css';
 <!-- NAV -->
 <nav class="main-nav scrolled" id="mainNav">
   <div class="nav-inner">
-    <a href="/" class="nav-logo">Afroposh <span>Afriture</span></a>
+    <a href="/" class="nav-logo">Afroposh <span>Afritude</span></a>
     <ul class="nav-links">
       <li><a href="/shop">← Back to Shop</a></li>
     </ul>
@@ -358,10 +358,10 @@ function placeOrder() {
     const city = document.getElementById('city').value;
     const country = document.getElementById('country').value;
     const msg = `Hi! I'd like to place an order:\n\n${items}\n\nSubtotal: ${fmt(subtotal)}\nShipping: ${selectedDelivery === 0 ? 'Pickup' : fmt(selectedDelivery)}\nTotal: ${fmt(total)}\n\nName: ${firstName} ${lastName}\nDelivery: ${city}, ${country}\nWhatsApp: ${phone}`;
-    window.open(`https://wa.me/2371184837?text=${encodeURIComponent(msg)}`);
+    window.open(`https://wa.me/2349160481729?text=${encodeURIComponent(msg)}`);
     showOrderSuccess(txRef);
   } else if (selectedPayment === 'bank') {
-    showToast('Bank details: Zenith Bank · 2201234567 · Afroposh Afriture. Send proof to WhatsApp.');
+    showToast('Bank details: Zenith Bank · 2201234567 · Afroposh Afritude. Send proof to WhatsApp.');
     showOrderSuccess(txRef);
   }
 }
